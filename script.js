@@ -190,7 +190,7 @@ document.getElementById('heroWork').addEventListener('click', () => {
 const contactForm = document.getElementById('contactForm');
 const submitBtn   = document.getElementById('submitBtn');
 
-const SHEETS_URL = 'YOUR_WEB_APP_URL_HERE';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwibZl63KVUtQoCjXwsLtylcimPOOxZZu9TYEAhw4hWgdA3ye0Sm_JQDox22s4R9h-7/exec';
 
 if (contactForm) contactForm.addEventListener('submit', async e => {
     e.preventDefault();
