@@ -236,14 +236,13 @@ const modalForm       = document.getElementById('modalForm');
 const modalSubmitBtn  = document.getElementById('modalSubmitBtn');
 
 function openModal() {
-    projectModal.classList.add('is-open');
+    projectModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    // Re-apply language so modal fields pick up current lang
     applyLanguage(currentLang);
 }
 
 function closeModal() {
-    projectModal.classList.remove('is-open');
+    projectModal.style.display = 'none';
     document.body.style.overflow = '';
 }
 

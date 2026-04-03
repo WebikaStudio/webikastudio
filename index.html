@@ -44,7 +44,7 @@
                 <span class="lang-sep">/</span>
                 <span id="otherLang">ES</span>
             </button>
-            <button class="cta-button" id="navCta" data-en="Let's Talk" data-es="Hablemos">Let's Talk</button>
+            <button class="cta-button" id="navCta" data-en="Let's Talk" data-es="Hablemos" onclick="openModal()">Let's Talk</button>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -82,7 +82,7 @@
                 </p>
 
                 <div class="hero-cta reveal">
-                    <button class="btn-primary" id="heroCta" data-en="Start Your Project" data-es="Inicia Tu Proyecto">Start Your Project</button>
+                    <button class="btn-primary" id="heroCta" data-en="Start Your Project" data-es="Inicia Tu Proyecto" onclick="openModal()">Start Your Project</button>
                     <button class="btn-ghost" id="heroWork" data-en="View Our Work" data-es="Ver Nuestros Trabajos">View Our Work</button>
                 </div>
 
@@ -545,7 +545,7 @@
     </footer>
 
     <!-- ======================== PROJECT MODAL ======================== -->
-    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none">
         <div class="modal-card">
             <button class="modal-close" id="modalClose" aria-label="Close">&#x2715;</button>
             <h2 class="modal-title" id="modalTitle" data-en="Start Your Project" data-es="Inicia Tu Proyecto">Start Your Project</h2>
