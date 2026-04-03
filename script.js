@@ -180,30 +180,18 @@ document.querySelectorAll('a[href^="#"], button[data-target-section]').forEach(e
     });
 });
 
-// Nav CTA "Let's Talk" → email
-const navCta = document.getElementById('navCta');
-if (navCta) {
-    navCta.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'mailto:webdevbyjavi@gmail.com?subject=Let\'s%20Talk&body=Hi%20Webika%20team,%0A%0AI%27d%20like%20to%20talk%20about%20my%20project%20...';
-    });
-}
-
-document.getElementById('heroCta').addEventListener('click', () => {
-    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-});
 document.getElementById('heroWork').addEventListener('click', () => {
     document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
 });
 
-// ---- Contact form ----
+// ---- Contact form (only present when template is live) ----
 
 const contactForm = document.getElementById('contactForm');
 const submitBtn   = document.getElementById('submitBtn');
 
 const SHEETS_URL = 'YOUR_WEB_APP_URL_HERE';
 
-contactForm.addEventListener('submit', async e => {
+if (contactForm) contactForm.addEventListener('submit', async e => {
     e.preventDefault();
 
     const originalText = submitBtn.getAttribute('data-' + currentLang);
