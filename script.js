@@ -239,6 +239,68 @@ contactForm.addEventListener('submit', async e => {
     }
 });
 
+// ---- Project Modal ----
+
+const projectModal    = document.getElementById('projectModal');
+const modalCloseBtn   = document.getElementById('modalClose');
+const modalForm       = document.getElementById('modalForm');
+const modalSubmitBtn  = document.getElementById('modalSubmitBtn');
+
+function openModal() {
+    projectModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    // Re-apply language so modal fields pick up current lang
+    applyLanguage(currentLang);
+}
+
+function closeModal() {
+    projectModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+}
+
+document.getElementById('navCta').addEventListener('click', openModal);
+document.getElementById('heroCta').addEventListener('click', openModal);
+
+modalCloseBtn.addEventListener('click', closeModal);
+projectModal.addEventListener('click', e => { if (e.target === projectModal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && projectModal.classList.contains('is-open')) closeModal(); });
+
+modalForm.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const originalText = modalSubmitBtn.getAttribute('data-' + currentLang);
+    modalSubmitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
+    modalSubmitBtn.disabled = true;
+
+    const data = {
+        name:    modalForm.querySelector('[name="name"]').value,
+        email:   modalForm.querySelector('[name="email"]').value,
+        phone:   modalForm.querySelector('[name="phone"]').value,
+        details: modalForm.querySelector('[name="details"]').value,
+    };
+
+    try {
+        await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(data) });
+        modalSubmitBtn.textContent = currentLang === 'en' ? '✓ Request Sent!' : '✓ ¡Solicitud Enviada!';
+        modalSubmitBtn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
+        setTimeout(() => {
+            modalSubmitBtn.textContent = originalText;
+            modalSubmitBtn.style.background = '';
+            modalSubmitBtn.disabled = false;
+            modalForm.reset();
+            closeModal();
+        }, 2500);
+    } catch {
+        modalSubmitBtn.textContent = currentLang === 'en' ? 'Error — Try Again' : 'Error — Intenta de Nuevo';
+        modalSubmitBtn.style.background = 'linear-gradient(135deg, #ef4444, #f97316)';
+        setTimeout(() => {
+            modalSubmitBtn.textContent = originalText;
+            modalSubmitBtn.style.background = '';
+            modalSubmitBtn.disabled = false;
+        }, 3000);
+    }
+});
+
 // ---- Footer year ----
 
 const footerYear = document.getElementById('footerYear');

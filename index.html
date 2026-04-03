@@ -544,6 +544,39 @@
         </div>
     </footer>
 
+    <!-- ======================== PROJECT MODAL ======================== -->
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose" aria-label="Close">&#x2715;</button>
+            <h2 class="modal-title" id="modalTitle" data-en="Start Your Project" data-es="Inicia Tu Proyecto">Start Your Project</h2>
+            <p class="modal-subtitle" data-en="Tell us a bit about what you need and we'll be in touch within 24 hours." data-es="Cuéntanos un poco sobre lo que necesitas y te contactaremos en 24 horas.">Tell us a bit about what you need and we'll be in touch within 24 hours.</p>
+            <form class="modal-form" id="modalForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label data-en="Your Name" data-es="Tu Nombre">Your Name</label>
+                        <input type="text" name="name" data-placeholder-en="John Doe" data-placeholder-es="Juan García" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label data-en="Email Address" data-es="Correo Electrónico">Email Address</label>
+                        <input type="email" name="email" data-placeholder-en="john@company.com" data-placeholder-es="juan@empresa.com" placeholder="john@company.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <span data-en="Phone Number" data-es="Número de Teléfono">Phone Number</span>
+                        <span class="field-optional" data-en="(optional)" data-es="(opcional)">(optional)</span>
+                    </label>
+                    <input type="tel" name="phone" data-placeholder-en="+1 (555) 000-0000" data-placeholder-es="+52 (55) 0000-0000" placeholder="+1 (555) 000-0000">
+                </div>
+                <div class="form-group">
+                    <label data-en="Project Details" data-es="Detalles del Proyecto">Project Details</label>
+                    <textarea rows="4" name="details" data-placeholder-en="Describe your project, goals, and timeline…" data-placeholder-es="Describe tu proyecto, objetivos y plazos…" placeholder="Describe your project, goals, and timeline…" required></textarea>
+                </div>
+                <button type="submit" class="btn-primary btn-full" id="modalSubmitBtn" data-en="Send Request" data-es="Enviar Solicitud">Send Request</button>
+            </form>
+        </div>
+    </div>
+
     <script src="./script.js"></script>
 </body>
 </html>
