@@ -267,17 +267,23 @@ modalForm.addEventListener('submit', async e => {
         details: modalForm.querySelector('[name="details"]').value,
     };
 
+    const modalThanks = document.getElementById('modalThanks');
+
     try {
         await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(data) });
-        modalSubmitBtn.textContent = currentLang === 'en' ? '✓ Request Sent!' : '✓ ¡Solicitud Enviada!';
-        modalSubmitBtn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
+        modalForm.style.display = 'none';
+        modalThanks.style.display = 'block';
+        applyLanguage(currentLang);
         setTimeout(() => {
-            modalSubmitBtn.textContent = originalText;
-            modalSubmitBtn.style.background = '';
-            modalSubmitBtn.disabled = false;
-            modalForm.reset();
             closeModal();
-        }, 2500);
+            setTimeout(() => {
+                modalForm.style.display = '';
+                modalThanks.style.display = 'none';
+                modalForm.reset();
+                modalSubmitBtn.disabled = false;
+                modalSubmitBtn.textContent = originalText;
+            }, 400);
+        }, 5000);
     } catch {
         modalSubmitBtn.textContent = currentLang === 'en' ? 'Error — Try Again' : 'Error — Intenta de Nuevo';
         modalSubmitBtn.style.background = 'linear-gradient(135deg, #ef4444, #f97316)';
@@ -287,6 +293,7 @@ modalForm.addEventListener('submit', async e => {
             modalSubmitBtn.disabled = false;
         }, 3000);
     }
+
 });
 
 // ---- Footer year ----
