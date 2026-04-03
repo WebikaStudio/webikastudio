@@ -148,6 +148,7 @@ nav {
     justify-content: space-between;
     padding: 0 2rem;
     border: 1px solid transparent;
+    overflow: hidden;
     transition:
         top    0.5s var(--ease),
         left   0.5s var(--ease),
@@ -190,9 +191,7 @@ nav.hidden { transform: translateY(calc(-100% - 24px)); }
     transition: width 0.08s linear;
     pointer-events: none;
 }
-nav.scrolled .nav-progress {
-    border-radius: 0 0 2px 2px;
-}
+
 
 /* Brand */
 .brand {
