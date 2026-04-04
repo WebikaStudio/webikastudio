@@ -3,7 +3,13 @@
    Language detection, scroll animations, nav behavior, etc.
    ============================================================ */
 
-// ---- Language System ----
+const pageLoadTime = Date.now();
+const visitCount   = parseInt(localStorage.getItem('visitCount') || '0') + 1;
+localStorage.setItem('visitCount', visitCount);
+
+
+
+   // ---- Language System ----
 
 function detectLanguage() {
     const saved = localStorage.getItem('webika-lang');
