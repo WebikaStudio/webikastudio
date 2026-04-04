@@ -296,18 +296,24 @@ modalForm.addEventListener('submit', async e => {
         details: modalForm.querySelector('[name="details"]').value,
     };
 
-    const modalThanks = document.getElementById('modalThanks');
+    const modalThanks    = document.getElementById('modalThanks');
+    const modalTitle     = document.getElementById('modalTitle');
+    const modalSubtitle  = document.querySelector('.modal-subtitle');
 
     try {
         await submitForm(formData);
-        modalForm.style.display = 'none';
-        modalThanks.style.display = 'block';
+        modalForm.style.display     = 'none';
+        modalTitle.style.display    = 'none';
+        modalSubtitle.style.display = 'none';
+        modalThanks.style.display   = 'block';
         applyLanguage(currentLang);
         setTimeout(() => {
             closeModal();
             setTimeout(() => {
-                modalForm.style.display = '';
-                modalThanks.style.display = 'none';
+                modalForm.style.display     = '';
+                modalTitle.style.display    = '';
+                modalSubtitle.style.display = '';
+                modalThanks.style.display   = 'none';
                 modalForm.reset();
                 modalSubmitBtn.disabled = false;
                 modalSubmitBtn.textContent = originalText;
