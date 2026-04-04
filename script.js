@@ -253,6 +253,17 @@ modalCloseBtn.addEventListener('click', closeModal);
 projectModal.addEventListener('click', e => { if (e.target === projectModal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && projectModal.classList.contains('is-open')) closeModal(); });
 
+function collectMetadata() {
+    return {
+        pageUrl    : window.location.href,
+        referrer   : document.referrer || 'Direct',
+        userAgent  : navigator.userAgent,
+        language   : navigator.language,
+        screenSize : `${screen.width}x${screen.height}`,
+        timezone   : Intl.DateTimeFormat().resolvedOptions().timeZone,
+    };
+}
+
 modalForm.addEventListener('submit', async e => {
     e.preventDefault();
 
@@ -260,17 +271,19 @@ modalForm.addEventListener('submit', async e => {
     modalSubmitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
     modalSubmitBtn.disabled = true;
 
-    const data = {
+    const formData = {
         name:    modalForm.querySelector('[name="name"]').value,
         email:   modalForm.querySelector('[name="email"]').value,
         phone:   modalForm.querySelector('[name="phone"]').value,
         details: modalForm.querySelector('[name="details"]').value,
     };
 
+    const payload = { ...formData, ...collectMetadata() };
+
     const modalThanks = document.getElementById('modalThanks');
 
     try {
-        await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(data) });
+        await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(payload) });
         modalForm.style.display = 'none';
         modalThanks.style.display = 'block';
         applyLanguage(currentLang);
