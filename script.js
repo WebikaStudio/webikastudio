@@ -260,6 +260,7 @@ projectModal.addEventListener('click', e => { if (e.target === projectModal) clo
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && projectModal.classList.contains('is-open')) closeModal(); });
 
 function collectMetadata() {
+    const now = new Date();
     return {
         pageUrl    : window.location.href,
         referrer   : document.referrer || 'Direct',
@@ -267,6 +268,9 @@ function collectMetadata() {
         language   : navigator.language,
         screenSize : `${screen.width}x${screen.height}`,
         timezone   : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        timeOnPage : Math.round((Date.now() - pageLoadTime) / 1000) + 's',
+        visitCount : visitCount,
+        localTime  : now.toLocaleString(),
     };
 }
 
