@@ -250,6 +250,21 @@ function openModal() {
 function closeModal() {
     projectModal.style.display = 'none';
     document.body.style.overflow = '';
+    // Reset modal state for next open
+    const mForm     = document.getElementById('modalForm');
+    const mThanks   = document.getElementById('modalThanks');
+    const mTitle    = document.getElementById('modalTitle');
+    const mSubtitle = document.querySelector('.modal-subtitle');
+    const mBtn      = document.getElementById('modalSubmitBtn');
+    if (mThanks && mThanks.style.display !== 'none') {
+        mForm.style.display     = '';
+        mTitle.style.display    = '';
+        mSubtitle.style.display = '';
+        mThanks.style.display   = 'none';
+        mForm.reset();
+        mBtn.disabled = false;
+        mBtn.textContent = mBtn.getAttribute('data-' + currentLang);
+    }
 }
 
 document.getElementById('navCta').addEventListener('click', openModal);
@@ -307,18 +322,6 @@ modalForm.addEventListener('submit', async e => {
         modalSubtitle.style.display = 'none';
         modalThanks.style.display   = 'block';
         applyLanguage(currentLang);
-        setTimeout(() => {
-            closeModal();
-            setTimeout(() => {
-                modalForm.style.display     = '';
-                modalTitle.style.display    = '';
-                modalSubtitle.style.display = '';
-                modalThanks.style.display   = 'none';
-                modalForm.reset();
-                modalSubmitBtn.disabled = false;
-                modalSubmitBtn.textContent = originalText;
-            }, 400);
-        }, 5000);
     } catch {
         modalSubmitBtn.textContent = currentLang === 'en' ? 'Error — Try Again' : 'Error — Intenta de Nuevo';
         modalSubmitBtn.style.background = 'linear-gradient(135deg, #ef4444, #f97316)';
