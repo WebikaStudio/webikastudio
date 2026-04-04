@@ -259,19 +259,27 @@ modalCloseBtn.addEventListener('click', closeModal);
 projectModal.addEventListener('click', e => { if (e.target === projectModal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && projectModal.classList.contains('is-open')) closeModal(); });
 
-function collectMetadata() {
-    const now = new Date();
-    return {
-        pageUrl    : window.location.href,
-        referrer   : document.referrer || 'Direct',
-        userAgent  : navigator.userAgent,
-        language   : navigator.language,
-        screenSize : `${screen.width}x${screen.height}`,
-        timezone   : Intl.DateTimeFormat().resolvedOptions().timeZone,
-        timeOnPage : Math.round((Date.now() - pageLoadTime) / 1000) + 's',
-        visitCount : visitCount,
-        localTime  : now.toLocaleString(),
+async function submitForm(formData) {
+    const timeOnPage = Math.round((Date.now() - pageLoadTime) / 1000);
+
+    const metadata = {
+        pageUrl       : window.location.href,
+        referrer      : document.referrer || 'Direct',
+        userAgent     : navigator.userAgent,
+        language      : navigator.language,
+        screenSize    : `${screen.width}x${screen.height}`,
+        timezone      : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        timeOnPage    : `${timeOnPage}s`,
+        visitCount    : visitCount,
+        localDateTime : new Date().toLocaleString(),
     };
+
+    const payload = { ...formData, ...metadata };
+
+    await fetch(SHEETS_URL, {
+        method : 'POST',
+        body   : JSON.stringify(payload),
+    });
 }
 
 modalForm.addEventListener('submit', async e => {
@@ -288,12 +296,10 @@ modalForm.addEventListener('submit', async e => {
         details: modalForm.querySelector('[name="details"]').value,
     };
 
-    const payload = { ...formData, ...collectMetadata() };
-
     const modalThanks = document.getElementById('modalThanks');
 
     try {
-        await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(payload) });
+        await submitForm(formData);
         modalForm.style.display = 'none';
         modalThanks.style.display = 'block';
         applyLanguage(currentLang);
