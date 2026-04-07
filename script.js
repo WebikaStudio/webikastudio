@@ -198,23 +198,65 @@ const submitBtn   = document.getElementById('submitBtn');
 
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby_AEnvLNOp8qMpFeS-aGvdEZDpypnNh9mP9ZNdmUu4Mp2UF8y-LjRxuXvug_aMDsdP/exec';
 
+// Rate-limit: track last submission timestamps to block rapid repeat sends
+const _submissionLog = [];
+function _isRateLimited() {
+    const now = Date.now();
+    // Remove entries older than 60 s
+    while (_submissionLog.length && now - _submissionLog[0] > 60_000) _submissionLog.shift();
+    if (_submissionLog.length >= 3) return true; // max 3 submissions per minute
+    _submissionLog.push(now);
+    return false;
+}
+
+const FIELD_LIMITS = { name: 100, email: 254, company: 150, service: 100, message: 2000, phone: 30, details: 2000 };
+
+function _sanitizeField(value, maxLen) {
+    return String(value).trim().slice(0, maxLen);
+}
+
+function _validateFormData(data) {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!data.email || !emailRe.test(data.email)) return 'Invalid email address.';
+    if (data.name !== undefined && !data.name) return 'Name is required.';
+    return null;
+}
+
 if (contactForm) contactForm.addEventListener('submit', async e => {
     e.preventDefault();
+
+    // Honeypot: bots fill hidden fields; real users don't
+    if (contactForm.querySelector('[name="_hp"]')?.value) return;
+
+    if (_isRateLimited()) {
+        submitBtn.textContent = currentLang === 'en' ? 'Too many attempts — wait a moment' : 'Demasiados intentos — espera un momento';
+        setTimeout(() => { submitBtn.textContent = submitBtn.getAttribute('data-' + currentLang); }, 3000);
+        return;
+    }
 
     const originalText = submitBtn.getAttribute('data-' + currentLang);
     submitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
     submitBtn.disabled = true;
 
     const data = {
-        name:    contactForm.querySelector('[name="name"]').value,
-        email:   contactForm.querySelector('[name="email"]').value,
-        company: contactForm.querySelector('[name="company"]').value,
-        service: contactForm.querySelector('[name="service"]').value,
-        message: contactForm.querySelector('[name="message"]').value,
+        name:    _sanitizeField(contactForm.querySelector('[name="name"]').value,    FIELD_LIMITS.name),
+        email:   _sanitizeField(contactForm.querySelector('[name="email"]').value,   FIELD_LIMITS.email),
+        company: _sanitizeField(contactForm.querySelector('[name="company"]').value, FIELD_LIMITS.company),
+        service: _sanitizeField(contactForm.querySelector('[name="service"]').value, FIELD_LIMITS.service),
+        message: _sanitizeField(contactForm.querySelector('[name="message"]').value, FIELD_LIMITS.message),
     };
 
+    const validationError = _validateFormData(data);
+    if (validationError) {
+        submitBtn.textContent = validationError;
+        submitBtn.disabled = false;
+        setTimeout(() => { submitBtn.textContent = originalText; }, 3000);
+        return;
+    }
+
     try {
-        await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(data) });
+        const res = await fetch(SHEETS_URL, { method: 'POST', body: JSON.stringify(data) });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         submitBtn.textContent = currentLang === 'en' ? '✓ Message Sent!' : '✓ ¡Mensaje Enviado!';
         submitBtn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
         setTimeout(() => {
@@ -291,25 +333,43 @@ async function submitForm(formData) {
 
     const payload = { ...formData, ...metadata };
 
-    await fetch(SHEETS_URL, {
+    const res = await fetch(SHEETS_URL, {
         method : 'POST',
         body   : JSON.stringify(payload),
     });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 }
 
 modalForm.addEventListener('submit', async e => {
     e.preventDefault();
+
+    // Honeypot check
+    if (modalForm.querySelector('[name="_hp"]')?.value) return;
+
+    if (_isRateLimited()) {
+        modalSubmitBtn.textContent = currentLang === 'en' ? 'Too many attempts — wait a moment' : 'Demasiados intentos — espera un momento';
+        setTimeout(() => { modalSubmitBtn.textContent = modalSubmitBtn.getAttribute('data-' + currentLang); }, 3000);
+        return;
+    }
 
     const originalText = modalSubmitBtn.getAttribute('data-' + currentLang);
     modalSubmitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
     modalSubmitBtn.disabled = true;
 
     const formData = {
-        name:    modalForm.querySelector('[name="name"]').value,
-        email:   modalForm.querySelector('[name="email"]').value,
-        phone:   modalForm.querySelector('[name="phone"]').value,
-        details: modalForm.querySelector('[name="details"]').value,
+        name:    _sanitizeField(modalForm.querySelector('[name="name"]').value,    FIELD_LIMITS.name),
+        email:   _sanitizeField(modalForm.querySelector('[name="email"]').value,   FIELD_LIMITS.email),
+        phone:   _sanitizeField(modalForm.querySelector('[name="phone"]').value,   FIELD_LIMITS.phone),
+        details: _sanitizeField(modalForm.querySelector('[name="details"]').value, FIELD_LIMITS.details),
     };
+
+    const validationError = _validateFormData(formData);
+    if (validationError) {
+        modalSubmitBtn.textContent = validationError;
+        modalSubmitBtn.disabled = false;
+        setTimeout(() => { modalSubmitBtn.textContent = originalText; }, 3000);
+        return;
+    }
 
     const modalThanks    = document.getElementById('modalThanks');
     const modalTitle     = document.getElementById('modalTitle');
