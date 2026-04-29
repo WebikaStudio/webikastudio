@@ -14,8 +14,7 @@ localStorage.setItem('visitCount', visitCount);
 function detectLanguage() {
     const saved = localStorage.getItem('webika-lang');
     if (saved === 'en' || saved === 'es') return saved;
-    const lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    return lang.startsWith('es') ? 'es' : 'en';
+    return 'es';
 }
 
 let currentLang = detectLanguage();
