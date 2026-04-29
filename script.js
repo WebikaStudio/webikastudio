@@ -394,6 +394,40 @@ modalForm.addEventListener('submit', async e => {
 
 });
 
+// ---- Why Website: stat counters ----
+
+const whyStatsRow = document.querySelector('.why-stats-row');
+if (whyStatsRow) {
+    const whyCounterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.why-stat-num[data-target]').forEach(animateCounter);
+                whyCounterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    whyCounterObserver.observe(whyStatsRow);
+}
+
+// ---- Why Website: animated bar chart ----
+
+const whyVisualCard = document.querySelector('.why-visual-card');
+if (whyVisualCard) {
+    const barObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.querySelectorAll('.why-bar-fill[data-width]').forEach((bar, i) => {
+                    setTimeout(() => {
+                        bar.style.width = bar.getAttribute('data-width') + '%';
+                    }, i * 200);
+                });
+                barObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    barObserver.observe(whyVisualCard);
+}
+
 // ---- Footer year ----
 
 const footerYear = document.getElementById('footerYear');
@@ -408,3 +442,83 @@ if (footerYear) {
 document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(currentLang);
 });
+
+// ---- Custom cursor ----
+
+(function () {
+    const dot  = document.querySelector('.cursor-dot');
+    const ring = document.querySelector('.cursor-ring');
+    if (!dot || !ring) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    let mx = -200, my = -200; // mouse position (dot follows exactly)
+    let rx = -200, ry = -200; // ring position  (lerped)
+    let visible = false;
+
+    // Dot tracks mouse instantly
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.left = mx + 'px';
+        dot.style.top  = my + 'px';
+        if (!visible) {
+            visible = true;
+            rx = mx; ry = my; // snap ring on first move so it doesn't glide in from corner
+            dot.classList.add('cur-on');
+            ring.classList.add('cur-on');
+        }
+    });
+
+    // Ring lerps toward mouse each frame
+    (function tick() {
+        rx += (mx - rx) * 0.11;
+        ry += (my - ry) * 0.11;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(tick);
+    }());
+
+    // Selectors for hover states
+    const INTERACTIVE = 'a, button, [role="button"], input, select, textarea, label, ' +
+                        '.nav-link, .service-card, .pricing-card, .why-card, .work-card, ' +
+                        '.process-step, .testimonial-card, .lang-toggle, .menu-toggle, .modal-close';
+    const BUTTONS = 'button';
+
+    document.addEventListener('mouseover', e => {
+        const el = e.target.closest(INTERACTIVE);
+        dot.classList.toggle('cur-hover', !!el);
+        ring.classList.toggle('cur-hover', !!el);
+        ring.classList.toggle('cur-btn', !!(el && el.matches(BUTTONS)));
+    });
+
+    document.addEventListener('mouseout', e => {
+        // Only clear when leaving the interactive zone entirely
+        if (!e.relatedTarget || !e.relatedTarget.closest(INTERACTIVE)) {
+            dot.classList.remove('cur-hover');
+            ring.classList.remove('cur-hover', 'cur-btn');
+        }
+    });
+
+    document.addEventListener('mousedown', () => {
+        dot.classList.add('cur-click');
+        ring.classList.add('cur-click');
+    });
+    document.addEventListener('mouseup', () => {
+        dot.classList.remove('cur-click');
+        ring.classList.remove('cur-click');
+    });
+
+    // Hide when pointer leaves the window
+    document.addEventListener('mouseleave', () => {
+        dot.classList.remove('cur-on');
+        ring.classList.remove('cur-on');
+        visible = false;
+    });
+    document.addEventListener('mouseenter', () => {
+        if (mx > -200) {
+            dot.classList.add('cur-on');
+            ring.classList.add('cur-on');
+            visible = true;
+        }
+    });
+}());
