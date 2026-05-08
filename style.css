@@ -104,48 +104,19 @@ body {
     66%      { transform: translate(-25px, 25px) scale(0.94); }
 }
 
+/* Canvas draws the distorted grid — sits below the vignette */
+.grid-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Vignette overlay: fades the canvas grid toward the background at the edges */
 .grid-overlay {
     position: absolute;
     inset: 0;
-    background-image:
-        linear-gradient(rgba(255,255,255,.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.022) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(ellipse 75% 75% at 50% 40%, black 30%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 75% 75% at 50% 40%, black 30%, transparent 100%);
-}
-
-/* Cursor-illuminated grid — revealed by a circular mask that tracks the mouse */
-.grid-spotlight {
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(99,160,255,.55) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,160,255,.55) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: radial-gradient(
-        circle 260px at var(--gx, -999px) var(--gy, -999px),
-        black 0%, rgba(0,0,0,.5) 45%, transparent 75%
-    );
-    -webkit-mask-image: radial-gradient(
-        circle 260px at var(--gx, -999px) var(--gy, -999px),
-        black 0%, rgba(0,0,0,.5) 45%, transparent 75%
-    );
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .5s var(--ease);
-}
-.grid-spotlight.is-active { opacity: 1; }
-
-/* Soft light-source bloom at the exact cursor position */
-.grid-spotlight::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-        circle 200px at var(--gx, -999px) var(--gy, -999px),
-        rgba(37,99,235,.14) 0%, transparent 70%
-    );
+    background: radial-gradient(ellipse 80% 80% at 50% 40%, transparent 25%, var(--bg) 100%);
     pointer-events: none;
 }
 
