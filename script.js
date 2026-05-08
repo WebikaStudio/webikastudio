@@ -442,6 +442,21 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(currentLang);
 });
 
+// ---- Grid spotlight ----
+
+(function () {
+    const spotlight = document.querySelector('.grid-spotlight');
+    if (!spotlight) return;
+
+    document.addEventListener('mousemove', e => {
+        spotlight.style.setProperty('--gx', e.clientX + 'px');
+        spotlight.style.setProperty('--gy', e.clientY + 'px');
+        spotlight.classList.add('is-active');
+    });
+
+    document.addEventListener('mouseleave', () => spotlight.classList.remove('is-active'));
+}());
+
 // ---- Custom cursor ----
 
 (function () {
