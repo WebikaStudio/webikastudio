@@ -442,97 +442,19 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(currentLang);
 });
 
-// ---- Grid distortion canvas ----
+// ---- Grid spotlight ----
 
 (function () {
-    const canvas = document.querySelector('.grid-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const spotlight = document.querySelector('.grid-spotlight');
+    if (!spotlight) return;
 
-    const GRID     = 64;   // px between grid lines — matches existing 64px grid
-    const RADIUS   = 210;  // influence radius around cursor
-    const STRENGTH = 62;   // max displacement at cursor center (px)
-    const STEP     = 5;    // sample interval along each line (smaller = smoother)
-    const SIGMA2   = 2 * (RADIUS / 2.5) * (RADIUS / 2.5); // Gaussian σ²
+    document.addEventListener('mousemove', e => {
+        spotlight.style.setProperty('--gx', e.clientX + 'px');
+        spotlight.style.setProperty('--gy', e.clientY + 'px');
+        spotlight.classList.add('is-active');
+    });
 
-    // Cursor position: target = raw mouse, m = lerped (smooth follow)
-    let tx = -9999, ty = -9999;
-    let mx = -9999, my = -9999;
-
-    function resize() {
-        canvas.width  = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
-    document.addEventListener('mouseleave', () => { tx = -9999; ty = -9999; });
-
-    // Gaussian repulsion: push a point away from the cursor
-    function displace(px, py) {
-        const dx = px - mx, dy = py - my;
-        const d2 = dx * dx + dy * dy;
-        if (d2 > RADIUS * RADIUS || d2 < 0.25) return [px, py];
-        const d    = Math.sqrt(d2);
-        const force = STRENGTH * Math.exp(-d2 / SIGMA2);
-        return [px + (dx / d) * force, py + (dy / d) * force];
-    }
-
-    // Interpolate line color: white (far) → blue (near cursor)
-    function lineColor(dist) {
-        const t  = Math.max(0, 1 - dist / RADIUS);
-        const tt = t * t;
-        // rgba: white@0.04 → blue-tinted@0.5
-        const r = Math.round(255 - 156 * tt); // 255→99
-        const g = Math.round(255 - 95  * tt); // 255→160
-        const b = 255;
-        const a = (0.04 + 0.46 * tt).toFixed(3);
-        return `rgba(${r},${g},${b},${a})`;
-    }
-
-    function draw() {
-        // Lerp cursor so distortion glides smoothly
-        mx += (tx - mx) * 0.09;
-        my += (ty - my) * 0.09;
-
-        const W = canvas.width, H = canvas.height;
-        ctx.clearRect(0, 0, W, H);
-
-        // Vertical lines
-        for (let x = 0; x <= W + GRID; x += GRID) {
-            const dist = Math.abs(x - mx);
-            ctx.beginPath();
-            ctx.strokeStyle = lineColor(dist);
-            ctx.lineWidth   = dist < RADIUS ? 0.6 + (1 - dist / RADIUS) * 0.7 : 0.5;
-            let first = true;
-            for (let y = -STEP; y <= H + STEP; y += STEP) {
-                const [px, py] = displace(x, y);
-                first ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-                first = false;
-            }
-            ctx.stroke();
-        }
-
-        // Horizontal lines
-        for (let y = 0; y <= H + GRID; y += GRID) {
-            const dist = Math.abs(y - my);
-            ctx.beginPath();
-            ctx.strokeStyle = lineColor(dist);
-            ctx.lineWidth   = dist < RADIUS ? 0.6 + (1 - dist / RADIUS) * 0.7 : 0.5;
-            let first = true;
-            for (let x = -STEP; x <= W + STEP; x += STEP) {
-                const [px, py] = displace(x, y);
-                first ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
-                first = false;
-            }
-            ctx.stroke();
-        }
-
-        requestAnimationFrame(draw);
-    }
-
-    draw();
+    document.addEventListener('mouseleave', () => spotlight.classList.remove('is-active'));
 }());
 
 // ---- Custom cursor ----
