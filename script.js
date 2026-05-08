@@ -195,7 +195,7 @@ document.getElementById('heroWork').addEventListener('click', () => {
 const contactForm = document.getElementById('contactForm');
 const submitBtn   = document.getElementById('submitBtn');
 
-const SHEETS_URL = 'https://script.google.com/macros/s/AKfycby_AEnvLNOp8qMpFeS-aGvdEZDpypnNh9mP9ZNdmUu4Mp2UF8y-LjRxuXvug_aMDsdP/exec';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbwpnaMJkkBtAjSSj9fGKmb4WVOR1m6Sxx4_5qYDg6qzl0CCOkJbToJ0m26sFZeXoH1BFA/exec';
 
 // Rate-limit: track last submission timestamps to block rapid repeat sends
 const _submissionLog = [];
