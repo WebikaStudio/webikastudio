@@ -83,7 +83,7 @@ function updateNav() {
     scrollProgress.style.width = pct.toFixed(1) + '%';
 
     // Active link highlighting
-    const sections = ['home', 'services', 'process', 'work', 'pricing', 'contact'];
+    const sections = ['home', 'why-website', 'services', 'pricing', 'customers', 'testimonials', 'contact'];
     let current = '';
     sections.forEach(id => {
         const el = document.getElementById(id);
@@ -118,19 +118,6 @@ function animateCounter(el) {
         if (progress < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
-}
-
-const statsEl = document.querySelector('.hero-stats');
-if (statsEl) {
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.querySelectorAll('.stat-number').forEach(animateCounter);
-                counterObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-    counterObserver.observe(statsEl);
 }
 
 // ---- Mobile Menu ----
@@ -184,10 +171,6 @@ document.querySelectorAll('a[href^="#"], button[data-target-section]').forEach(e
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
-});
-
-document.getElementById('heroWork').addEventListener('click', () => {
-    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
 });
 
 // ---- Contact form (only present when template is live) ----
@@ -283,13 +266,13 @@ const modalForm       = document.getElementById('modalForm');
 const modalSubmitBtn  = document.getElementById('modalSubmitBtn');
 
 function openModal() {
-    projectModal.style.display = 'flex';
+    projectModal.classList.add('is-open');
     document.body.style.overflow = 'hidden';
     applyLanguage(currentLang);
 }
 
 function closeModal() {
-    projectModal.style.display = 'none';
+    projectModal.classList.remove('is-open');
     document.body.style.overflow = '';
     // Reset modal state for next open
     const mForm     = document.getElementById('modalForm');
@@ -309,7 +292,6 @@ function closeModal() {
 }
 
 document.getElementById('navCta').addEventListener('click', openModal);
-document.getElementById('heroCta').addEventListener('click', openModal);
 
 modalCloseBtn.addEventListener('click', closeModal);
 projectModal.addEventListener('click', e => { if (e.target === projectModal) closeModal(); });
@@ -480,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Selectors for hover states
     const INTERACTIVE = 'a, button, [role="button"], input, select, textarea, label, ' +
                         '.nav-link, .service-card, .pricing-card, .why-card, .work-card, ' +
-                        '.process-step, .testimonial-card, .lang-toggle, .menu-toggle, .modal-close';
+                        '.testimonial-card, .lang-toggle, .menu-toggle, .modal-close';
     const BUTTONS = 'button';
 
     document.addEventListener('mouseover', e => {
@@ -520,4 +502,38 @@ document.addEventListener('DOMContentLoaded', () => {
             visible = true;
         }
     });
+}());
+
+// ---- Customers Showcase (auto-cycling carousel) ----
+(function () {
+    const tabs   = document.querySelectorAll('.customer-tab');
+    const slides = document.querySelectorAll('.customer-slide');
+    const infos  = document.querySelectorAll('.customer-info-slide');
+    const urlEl  = document.getElementById('customerUrl');
+    if (!tabs.length) return;
+
+    let current = 0;
+    let timer   = null;
+
+    function showCustomer(index) {
+        current = index;
+        tabs.forEach((tab, i)   => tab.classList.toggle('active', i === index));
+        slides.forEach((s, i)   => s.classList.toggle('active', i === index));
+        infos.forEach((info, i) => info.classList.toggle('active', i === index));
+        if (urlEl) urlEl.textContent = tabs[index].dataset.url || '';
+    }
+
+    function startCycle() {
+        clearInterval(timer);
+        timer = setInterval(() => showCustomer((current + 1) % tabs.length), 6000);
+    }
+
+    tabs.forEach((tab, i) => {
+        tab.addEventListener('click', () => {
+            showCustomer(i);
+            startCycle();
+        });
+    });
+
+    startCycle();
 }());

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBIKA — Creative Digital Studio</title>
+    <meta name="theme-color" content="#080e1c">
+    <title>Webika Studio — Creative Digital Studio</title>
     <meta name="description" content="Professional web development and design for small and medium businesses.">
     <link rel="icon" type="image/png" href="./assets/favicon.png">
     <link rel="apple-touch-icon" href="./assets/favicon.png">
@@ -48,19 +49,20 @@
     <nav id="navbar">
         <div class="nav-progress" id="scrollProgress"></div>
         <a href="#home" class="brand">
-            <img class="logo" src="./assets/logo.png" alt="Webika Logo">
+            <img class="logo" src="./assets/logo.png" alt="Webika Logo" width="160" height="160">
             <span class="brand-text">
-                <span class="company-name">WEBIKA</span>
+                <span class="company-name">Webika Studio</span>
                 <span class="company-tag" data-en="Creative Digital Studio" data-es="Estudio Digital Creativo">Creative Digital Studio</span>
             </span>
         </a>
 
-        <!-- <div class="nav-center">
+        <div class="nav-center">
+            <a href="#why-website" class="nav-link" data-en="Why Us" data-es="Por Qué">Why Us</a>
             <a href="#services" class="nav-link" data-en="Services" data-es="Servicios">Services</a>
-            <a href="#process" class="nav-link" data-en="Process" data-es="Proceso">Process</a>
-            <a href="#work" class="nav-link" data-en="Work" data-es="Trabajos">Work</a>
-            <a href="#pricing" class="nav-link" data-en="Pricing" data-es="Precios">Pricing</a>
-        </div> -->
+            <a href="#pricing" class="nav-link" data-en="Packages" data-es="Paquetes">Packages</a>
+            <a href="#customers" class="nav-link" data-en="Work" data-es="Trabajos">Work</a>
+            <a href="#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+        </div>
 
         <div class="nav-right">
             <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
@@ -78,94 +80,34 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <!-- <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <a href="#why-website" class="mobile-link" data-en="Why Us" data-es="Por Qué">Why Us</a>
         <a href="#services" class="mobile-link" data-en="Services" data-es="Servicios">Services</a>
-        <a href="#process" class="mobile-link" data-en="Process" data-es="Proceso">Process</a>
-        <a href="#work" class="mobile-link" data-en="Work" data-es="Trabajos">Work</a>
-        <a href="#pricing" class="mobile-link" data-en="Pricing" data-es="Precios">Pricing</a>
-        <a href="#contact" class="mobile-link mobile-cta" data-en="Let's Talk" data-es="Hablemos">Let's Talk</a>
-    </div> -->
+        <a href="#pricing" class="mobile-link" data-en="Packages" data-es="Paquetes">Packages</a>
+        <a href="#customers" class="mobile-link" data-en="Work" data-es="Trabajos">Work</a>
+        <a href="#contact" class="mobile-link" data-en="Contact" data-es="Contacto">Contact</a>
+        <button class="mobile-link mobile-cta" onclick="openModal()" data-en="Let's Talk" data-es="Hablemos">Let's Talk</button>
+    </div>
 
     <main>
 
         <!-- ======================== HERO ======================== -->
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <div class="hero-badge reveal">
-                    <span class="badge-dot" aria-hidden="true"></span>
-                    <span data-en="Available for new projects" data-es="Disponible para nuevos proyectos">Available for new projects</span>
-                </div>
+        <section id="home" class="hero">
+            <h1 class="hero-title">
+                <span data-en="We Build Websites" data-es="Creamos Sitios Web">We Build Websites</span>
+                <span class="gradient-text" data-en="That Grow Your Business" data-es="Que Hacen Crecer Tu Negocio">That Grow Your Business</span>
+            </h1>
+            <p class="hero-subtitle" data-en="Professional web development and design for small and medium businesses. We turn your vision into a powerful online presence that converts visitors into customers." data-es="Desarrollo web profesional para pequeñas y medianas empresas. Convertimos tu visión en una presencia digital poderosa que convierte visitantes en clientes.">
+                Professional web development and design for small and medium businesses. We turn your vision into a powerful online presence that converts visitors into customers.
+            </p>
 
-                <h1 class="hero-title reveal">
-                    <span data-en="We Build Websites" data-es="Creamos Sitios Web">We Build Websites</span><br>
-                    <span class="gradient-text" data-en="That Grow Your Business" data-es="Que Hacen Crecer Tu Negocio">That Grow Your Business</span>
-                </h1>
-
-                <p class="hero-subtitle reveal" data-en="Professional web development and design for small and medium businesses. We turn your vision into a powerful online presence that converts visitors into customers." data-es="Desarrollo web profesional para pequeñas y medianas empresas. Convertimos tu visión en una presencia digital poderosa que convierte visitantes en clientes.">
-                    Professional web development and design for small and medium businesses. We turn your vision into a powerful online presence that converts visitors into customers.
-                </p>
-
-                <div class="hero-cta reveal">
-                    <button class="btn-primary" id="heroCta" data-en="Start Your Project" data-es="Inicia Tu Proyecto" onclick="openModal()">Start Your Project</button>
-                    <button class="btn-ghost" id="heroWork" data-en="View Our Work" data-es="Ver Nuestros Trabajos">View Our Work</button>
-                </div>
-
-                <div class="hero-stats reveal">
-                    <div class="stat">
-                        <div class="stat-row">
-                            <span class="stat-number" data-target="50">0</span><span class="stat-suffix">+</span>
-                        </div>
-                        <span class="stat-label" data-en="Projects Delivered" data-es="Proyectos Entregados">Projects Delivered</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat">
-                        <div class="stat-row">
-                            <span class="stat-number" data-target="98">0</span><span class="stat-suffix">%</span>
-                        </div>
-                        <span class="stat-label" data-en="Client Satisfaction" data-es="Satisfacción del Cliente">Client Satisfaction</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat">
-                        <div class="stat-row">
-                            <span class="stat-number" data-target="5">0</span><span class="stat-suffix">+</span>
-                        </div>
-                        <span class="stat-label" data-en="Years Experience" data-es="Años de Experiencia">Years Experience</span>
-                    </div>
-                </div>
+            <div class="scroll-indicator">
+                <span data-en="Scroll for more" data-es="Desplázate para ver más">Scroll for more</span>
+                <div class="scroll-line"><div class="scroll-line-dot"></div></div>
             </div>
-
-            <div class="hero-visual reveal">
-                <div class="browser-mockup" aria-hidden="true">
-                    <div class="browser-bar">
-                        <div class="browser-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                        <div class="browser-url">webikastudio.com</div>
-                    </div>
-                    <div class="browser-body">
-                        <div class="mock-nav"></div>
-                        <div class="mock-hero-block">
-                            <div class="mock-line w-80"></div>
-                            <div class="mock-line w-60"></div>
-                            <div class="mock-btn"></div>
-                        </div>
-                        <div class="mock-cards">
-                            <div class="mock-card c-blue"></div>
-                            <div class="mock-card c-purple"></div>
-                            <div class="mock-card c-teal"></div>
-                        </div>
-                        <div class="mock-footer"></div>
-                    </div>
-                </div>
-                <div class="mockup-glow" aria-hidden="true"></div>
-            </div>
-
-            <!-- Hidden Momentarily -->
-            <!-- <a href="#services" class="scroll-hint" aria-label="Scroll down">
-                <span data-en="Scroll to explore" data-es="Desplázate para explorar">Scroll to explore</span>
-                <div class="scroll-arrow" aria-hidden="true"></div>
-            </a> -->
         </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
 
         <!-- ======================== WHY WEBSITE ======================== -->
         <section id="why-website" class="why-section">
@@ -276,292 +218,171 @@
 
         </section>
 
-        <template id="paused-content">
-
-        <!-- ======================== TRUST BAR ======================== -->
-        <div class="trust-bar">
-            <p class="trust-label" data-en="Trusted by businesses across industries" data-es="Con la confianza de empresas en distintas industrias">Trusted by businesses across industries</p>
-            <div class="trust-logos" aria-label="Client logos">
-                <span class="trust-logo">RestaurantPro</span>
-                <span class="trust-logo">LegalEdge</span>
-                <span class="trust-logo">FitCore</span>
-                <span class="trust-logo">MediCare+</span>
-                <span class="trust-logo">BuildRight</span>
-                <span class="trust-logo">ShopLocal</span>
-            </div>
-        </div>
+        <div class="section-divider" aria-hidden="true"></div>
 
         <!-- ======================== SERVICES ======================== -->
         <section id="services" class="services-section">
+
+            <!-- Section Header -->
             <div class="section-header reveal">
-                <span class="section-tag" data-en="What We Do" data-es="Qué Hacemos">What We Do</span>
-                <h2 data-en="Services That Drive Results" data-es="Servicios Que Generan Resultados">Services That Drive Results</h2>
-                <p data-en="Everything your business needs to thrive online — from design to launch and beyond." data-es="Todo lo que tu negocio necesita para destacar en línea — desde el diseño hasta el lanzamiento y más.">Everything your business needs to thrive online — from design to launch and beyond.</p>
+                <span class="section-tag" data-en="Our Services" data-es="Nuestros Servicios">Our Services</span>
+                <h2><span data-en="Everything your business needs to grow" data-es="Todo lo que tu negocio necesita para crecer">Everything your business needs to grow</span> <span class="gradient-text" data-en="online" data-es="en línea">online</span></h2>
+                <p data-en="Design, hosting, functionality, and performance — four pillars that put your website to work for you, every day." data-es="Diseño, hosting, funcionalidad y rendimiento — cuatro pilares para que tu sitio web trabaje a tu favor todos los días.">Design, hosting, functionality, and performance — four pillars that put your website to work for you, every day.</p>
             </div>
 
-            <div class="services-grid">
+            <!-- 4 Pillars -->
+            <div class="pillars-grid">
                 <div class="service-card reveal" data-delay="0">
                     <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
-                    <h3 data-en="Web Design & Development" data-es="Diseño y Desarrollo Web">Web Design & Development</h3>
-                    <p data-en="Custom, responsive websites built to convert visitors into customers. Pixel-perfect designs that reflect your brand." data-es="Sitios web personalizados y responsivos diseñados para convertir visitantes en clientes. Diseños perfectos que reflejan tu marca.">Custom, responsive websites built to convert visitors into customers. Pixel-perfect designs that reflect your brand.</p>
-                    <ul class="service-features">
-                        <li data-en="Custom UI/UX Design" data-es="Diseño UI/UX Personalizado">Custom UI/UX Design</li>
-                        <li data-en="Mobile-First Responsive" data-es="Responsivo, Móvil Primero">Mobile-First Responsive</li>
-                        <li data-en="Fast Loading Speed" data-es="Velocidad de Carga Rápida">Fast Loading Speed</li>
-                    </ul>
+                    <h3 data-en="Custom web design and development" data-es="Diseño y desarrollo web a la medida">Custom web design and development</h3>
+                    <p data-en="Modern, fast, conversion-focused sites built around you — we take you from no online presence to one that sells." data-es="Sitios modernos, rápidos y enfocados en conversión, diseñados a tu medida — te llevamos de no tener presencia digital a una que vende.">Modern, fast, conversion-focused sites built around you — we take you from no online presence to one that sells.</p>
                 </div>
 
-                <div class="service-card featured reveal" data-delay="100">
-                    <div class="service-badge" data-en="Most Popular" data-es="Más Popular">Most Popular</div>
+                <div class="service-card reveal" data-delay="100">
                     <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg>
                     </div>
-                    <h3 data-en="E-Commerce Solutions" data-es="Soluciones E-Commerce">E-Commerce Solutions</h3>
-                    <p data-en="Powerful online stores that sell 24/7. From product catalogs to secure checkout and payment processing." data-es="Tiendas en línea potentes que venden 24/7. Desde catálogos de productos hasta checkout seguro y procesamiento de pagos.">Powerful online stores that sell 24/7. From product catalogs to secure checkout and payment processing.</p>
-                    <ul class="service-features">
-                        <li data-en="Secure Payment Gateway" data-es="Pasarela de Pago Segura">Secure Payment Gateway</li>
-                        <li data-en="Inventory Management" data-es="Gestión de Inventario">Inventory Management</li>
-                        <li data-en="Order Tracking" data-es="Seguimiento de Pedidos">Order Tracking</li>
-                    </ul>
+                    <h3 data-en="Hosting and maintenance" data-es="Hosting y mantenimiento">Hosting and maintenance</h3>
+                    <p data-en="Hosting, updates, security, monitoring, and content edits in one fixed monthly plan — you don't need to understand servers, we handle it." data-es="Hosting, actualizaciones, seguridad, monitoreo y ediciones de contenido en un plan mensual de precio fijo — tú no tienes que entender de servidores, nosotros nos encargamos.">Hosting, updates, security, monitoring, and content edits in one fixed monthly plan — you don't need to understand servers, we handle it.</p>
                 </div>
 
-                <!-- Solamente ofrezco 2 servicios en este momento -->
-                <!-- <div class="service-card reveal" data-delay="200">
+                <div class="service-card reveal" data-delay="200">
                     <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
                     </div>
-                    <h3 data-en="SEO & Performance" data-es="SEO y Rendimiento">SEO & Performance</h3>
-                    <p data-en="Get found on Google and outrank your competition. We optimize your site for speed, visibility, and conversions." data-es="Aparece en Google y supera a tu competencia. Optimizamos tu sitio para velocidad, visibilidad y conversiones.">Get found on Google and outrank your competition. We optimize your site for speed, visibility, and conversions.</p>
-                    <ul class="service-features">
-                        <li data-en="Keyword Research" data-es="Investigación de Palabras Clave">Keyword Research</li>
-                        <li data-en="Technical SEO" data-es="SEO Técnico">Technical SEO</li>
-                        <li data-en="Performance Audit" data-es="Auditoría de Rendimiento">Performance Audit</li>
-                    </ul>
+                    <h3 data-en="Backend and functionality" data-es="Backend y funcionalidad">Backend and functionality</h3>
+                    <p data-en="Forms, integrations, automations, and lightweight e-commerce — your site stops being a brochure and becomes a tool that works for your business." data-es="Formularios, integraciones, automatizaciones y e-commerce ligero — tu sitio deja de ser un folleto y se convierte en una herramienta que trabaja por tu negocio.">Forms, integrations, automations, and lightweight e-commerce — your site stops being a brochure and becomes a tool that works for your business.</p>
                 </div>
 
                 <div class="service-card reveal" data-delay="300">
                     <div class="service-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
                     </div>
-                    <h3 data-en="Maintenance & Support" data-es="Mantenimiento y Soporte">Maintenance & Support</h3>
-                    <p data-en="Keep your website secure, updated, and running at peak performance. We've got you covered 24/7." data-es="Mantén tu sitio web seguro, actualizado y funcionando al máximo. Te cubrimos 24/7.">Keep your website secure, updated, and running at peak performance. We've got you covered 24/7.</p>
-                    <ul class="service-features">
-                        <li data-en="Security Updates" data-es="Actualizaciones de Seguridad">Security Updates</li>
-                        <li data-en="Regular Backups" data-es="Copias de Seguridad Regulares">Regular Backups</li>
-                        <li data-en="Priority Support" data-es="Soporte Prioritario">Priority Support</li>
-                    </ul>
-                </div> -->
-
-            </div>
-        </section>
-
-        <!-- ======================== PROCESS ======================== -->
-        <section id="process" class="process-section">
-            <div class="section-header reveal">
-                <span class="section-tag" data-en="How We Work" data-es="Cómo Trabajamos">How We Work</span>
-                <h2 data-en="Our Simple 4-Step Process" data-es="Nuestro Proceso de 4 Pasos">Our Simple 4-Step Process</h2>
-                <p data-en="We make the journey from idea to launch smooth, transparent, and stress-free." data-es="Hacemos el camino de la idea al lanzamiento fluido, transparente y sin estrés.">We make the journey from idea to launch smooth, transparent, and stress-free.</p>
-            </div>
-
-            <div class="process-steps">
-                <div class="process-step reveal" data-delay="0">
-                    <div class="step-num">01</div>
-                    <div class="step-content">
-                        <h3 data-en="Discovery" data-es="Descubrimiento">Discovery</h3>
-                        <p data-en="We dive deep into your business, goals, and audience to build the perfect strategy." data-es="Profundizamos en tu negocio, objetivos y audiencia para construir la estrategia perfecta.">We dive deep into your business, goals, and audience to build the perfect strategy.</p>
-                    </div>
-                </div>
-                <div class="process-step reveal" data-delay="150">
-                    <div class="step-num">02</div>
-                    <div class="step-content">
-                        <h3 data-en="Design" data-es="Diseño">Design</h3>
-                        <p data-en="Our designers craft stunning mockups that bring your brand to life before a line of code is written." data-es="Nuestros diseñadores crean maquetas impresionantes que dan vida a tu marca antes de escribir código.">Our designers craft stunning mockups that bring your brand to life before a line of code is written.</p>
-                    </div>
-                </div>
-                <div class="process-step reveal" data-delay="300">
-                    <div class="step-num">03</div>
-                    <div class="step-content">
-                        <h3 data-en="Development" data-es="Desarrollo">Development</h3>
-                        <p data-en="We build your site with clean, fast, scalable code — tested across all devices and browsers." data-es="Construimos tu sitio con código limpio, rápido y escalable — probado en todos los dispositivos y navegadores.">We build your site with clean, fast, scalable code — tested across all devices and browsers.</p>
-                    </div>
-                </div>
-                <div class="process-step reveal" data-delay="450">
-                    <div class="step-num">04</div>
-                    <div class="step-content">
-                        <h3 data-en="Launch & Grow" data-es="Lanzamiento y Crecimiento">Launch & Grow</h3>
-                        <p data-en="We deploy your site, train your team, and provide ongoing support to ensure continued growth." data-es="Desplegamos tu sitio, capacitamos a tu equipo y brindamos soporte continuo para asegurar el crecimiento.">We deploy your site, train your team, and provide ongoing support to ensure continued growth.</p>
-                    </div>
+                    <h3 data-en="Optimization and performance" data-es="Optimización y performance">Optimization and performance</h3>
+                    <p data-en="Speed, technical SEO, Core Web Vitals, and analytics — the difference between having a page and competing online." data-es="Velocidad, SEO técnico, Core Web Vitals y analítica — la diferencia entre tener una página y competir en línea.">Speed, technical SEO, Core Web Vitals, and analytics — the difference between having a page and competing online.</p>
                 </div>
             </div>
-        </section>
 
-        <!-- ======================== WORK ======================== -->
-        <section id="work" class="work-section">
-            <div class="section-header reveal">
-                <span class="section-tag" data-en="Our Work" data-es="Nuestros Trabajos">Our Work</span>
-                <h2 data-en="Recent Projects" data-es="Proyectos Recientes">Recent Projects</h2>
-                <p data-en="A selection of websites we've built for businesses like yours." data-es="Una selección de sitios web que hemos construido para negocios como el tuyo.">A selection of websites we've built for businesses like yours.</p>
-            </div>
-
-            <div class="work-grid">
-                <div class="work-card reveal" data-delay="0">
-                    <div class="work-thumb thumb-restaurant">
-                        <div class="work-overlay">
-                            <span data-en="View Project" data-es="Ver Proyecto">View Project</span>
-                        </div>
-                    </div>
-                    <div class="work-meta">
-                        <span class="work-tag" data-en="Art" data-es="Arte">Art</span>
-                        <h3>Epico Studio</h3>
-                        <p data-en="High-end art gallery website, led by artist Tania Catalan." data-es="Sitio web para galería de arte de alta gama, liderado por la artista Tania Catalan.">High-end art gallery website, led by artist Tania Catalan.</p>
-                    </div>
-                </div>
-
-                <div class="work-card reveal" data-delay="150">
-                    <div class="work-thumb thumb-law">
-                        <div class="work-overlay">
-                            <span data-en="View Project" data-es="Ver Proyecto">View Project</span>
-                        </div>
-                    </div>
-                    <div class="work-meta">
-                        <span class="work-tag" data-en="Legal" data-es="Legal">Legal</span>
-                        <h3>Sterling & Associates</h3>
-                        <p data-en="Professional law firm site with case studies, attorney profiles, and consultation booking." data-es="Sitio profesional de firma legal con casos de estudio, perfiles de abogados y reserva de consultas.">Professional law firm site with case studies, attorney profiles, and consultation booking.</p>
-                    </div>
-                </div>
-
-                <div class="work-card reveal" data-delay="300">
-                    <div class="work-thumb thumb-fitness">
-                        <div class="work-overlay">
-                            <span data-en="View Project" data-es="Ver Proyecto">View Project</span>
-                        </div>
-                    </div>
-                    <div class="work-meta">
-                        <span class="work-tag" data-en="Fitness" data-es="Fitness">Fitness</span>
-                        <h3>FitCore Studio</h3>
-                        <p data-en="Class scheduling, membership plans, trainer profiles and an integrated e-commerce store." data-es="Programación de clases, planes de membresía, perfiles de entrenadores y tienda e-commerce integrada.">Class scheduling, membership plans, trainer profiles and an integrated e-commerce store.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================== TESTIMONIALS ======================== -->
-        <section class="testimonials-section">
-            <div class="section-header reveal">
-                <span class="section-tag" data-en="What Clients Say" data-es="Lo Que Dicen Nuestros Clientes">What Clients Say</span>
-                <h2 data-en="Real Results, Real Stories" data-es="Resultados Reales, Historias Reales">Real Results, Real Stories</h2>
-            </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card reveal" data-delay="0">
-                    <div class="stars" aria-label="5 stars">★★★★★</div>
-                    <blockquote data-en='"Webika transformed our online presence. Our bookings increased by 40% within the first month after launch."' data-es='"Webika transformó nuestra presencia en línea. Nuestras reservas aumentaron un 40% en el primer mes después del lanzamiento."'>"Webika transformed our online presence. Our bookings increased by 40% within the first month after launch."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="author-avatar av1" aria-hidden="true">MC</div>
-                        <div>
-                            <strong>Maria Chen</strong>
-                            <span data-en="Owner, La Bella Cucina" data-es="Propietaria, La Bella Cucina">Owner, La Bella Cucina</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal" data-delay="150">
-                    <div class="stars" aria-label="5 stars">★★★★★</div>
-                    <blockquote data-en='"Professional, fast, and results exceeded expectations. Our firm now ranks #1 on Google in our city."' data-es='"Profesional, rápido y los resultados superaron nuestras expectativas. Nuestra firma ahora es #1 en Google en nuestra ciudad."'>"Professional, fast, and results exceeded expectations. Our firm now ranks #1 on Google in our city."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="author-avatar av2" aria-hidden="true">JS</div>
-                        <div>
-                            <strong>James Sterling</strong>
-                            <span data-en="Partner, Sterling & Associates" data-es="Socio, Sterling & Associates">Partner, Sterling & Associates</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card reveal" data-delay="300">
-                    <div class="stars" aria-label="5 stars">★★★★★</div>
-                    <blockquote data-en='"The e-commerce store they built generates 60% of our total revenue now. Best investment we ever made."' data-es='"La tienda e-commerce que construyeron genera el 60% de nuestros ingresos totales. La mejor inversión que hemos hecho."'>"The e-commerce store they built generates 60% of our total revenue now. Best investment we ever made."</blockquote>
-                    <div class="testimonial-author">
-                        <div class="author-avatar av3" aria-hidden="true">SR</div>
-                        <div>
-                            <strong>Sofia Rodriguez</strong>
-                            <span data-en="CEO, ShopLocal" data-es="CEO, ShopLocal">CEO, ShopLocal</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======================== PRICING ======================== -->
-        <section id="pricing" class="pricing-section">
-            <div class="section-header reveal">
-                <span class="section-tag" data-en="Investment" data-es="Inversión">Investment</span>
-                <h2 data-en="Transparent Pricing" data-es="Precios Transparentes">Transparent Pricing</h2>
-                <p data-en="No hidden fees. No surprises. Just clear, fair pricing for exceptional work." data-es="Sin cargos ocultos. Sin sorpresas. Solo precios claros y justos por trabajo excepcional.">No hidden fees. No surprises. Just clear, fair pricing for exceptional work.</p>
+            <!-- Packages -->
+            <div class="services-subheader reveal" id="pricing">
+                <h3 data-en="Choose the plan that fits where you are" data-es="Elige el plan que se ajuste a tu momento">Choose the plan that fits where you are</h3>
+                <p data-en="From your first online presence to a full platform — a plan for every stage of your business." data-es="Desde tu primera presencia en línea hasta una plataforma completa — un plan para cada etapa de tu negocio.">From your first online presence to a full platform — a plan for every stage of your business.</p>
             </div>
 
             <div class="pricing-grid">
                 <div class="pricing-card reveal" data-delay="0">
                     <div class="pricing-header">
-                        <h3 data-en="Starter" data-es="Básico">Starter</h3>
+                        <h3 data-en="Essential" data-es="Esencial">Essential</h3>
                         <div class="price-row">
-                            <span class="price-currency">$</span>
-                            <span class="price-amount">799</span>
+                            <span class="price-amount price-tbd" data-en="Static website with basic functionality." data-es="Sitio web estático con funcionalidad básica.">Static website with basic functionality.</span>
                         </div>
-                        <p data-en="Perfect for new businesses getting online" data-es="Perfecto para nuevos negocios que empiezan en línea">Perfect for new businesses getting online</p>
+                        <p data-en="To exist online — starting now." data-es="Para existir en línea, ya.">To exist online — starting now.</p>
                     </div>
                     <ul class="pricing-features">
-                        <li data-en="5-Page Website" data-es="Sitio Web de 5 Páginas">5-Page Website</li>
-                        <li data-en="Mobile Responsive" data-es="Responsivo Móvil">Mobile Responsive</li>
-                        <li data-en="Contact Form" data-es="Formulario de Contacto">Contact Form</li>
-                        <li data-en="Basic SEO Setup" data-es="Configuración SEO Básica">Basic SEO Setup</li>
-                        <li data-en="1 Month Support" data-es="1 Mes de Soporte">1 Month Support</li>
+                        <li data-en="Few-page website" data-es="Sitio de pocas páginas">Few-page website</li>
+                        <li data-en="Custom design" data-es="Diseño a tu medida">Custom design</li>
+                        <li data-en="Contact form" data-es="Formulario de contacto">Contact form</li>
+                        <li data-en="Hosting included" data-es="Hosting incluido">Hosting included</li>
                     </ul>
-                    <button class="btn-outline" data-target-section="contact" data-en="Get Started" data-es="Empezar">Get Started</button>
+                    <button class="btn-outline" onclick="openModal()" data-en="Choose Essential" data-es="Elegir Esencial">Choose Essential</button>
                 </div>
 
                 <div class="pricing-card featured reveal" data-delay="150">
-                    <div class="pricing-badge" data-en="Best Value" data-es="Mejor Valor">Best Value</div>
+                    <div class="pricing-badge" data-en="Recommended" data-es="Recomendado">Recommended</div>
                     <div class="pricing-header">
-                        <h3 data-en="Growth" data-es="Crecimiento">Growth</h3>
+                        <h3 data-en="Professional" data-es="Profesional">Professional</h3>
                         <div class="price-row">
-                            <span class="price-currency">$</span>
-                            <span class="price-amount">1,499</span>
+                            <span class="price-amount price-tbd" data-en="Dynamic website with advanced functionality." data-es="Sitio web dinámico con funcionalidad avanzada.">Dynamic website with advanced functionality.</span>
                         </div>
-                        <p data-en="For businesses ready to scale online" data-es="Para negocios listos para escalar en línea">For businesses ready to scale online</p>
+                        <p data-en="For the business that knows digital means growth." data-es="Para el negocio que entiende que digital es crecimiento.">For the business that knows digital means growth.</p>
                     </div>
                     <ul class="pricing-features">
-                        <li data-en="10-Page Website" data-es="Sitio Web de 10 Páginas">10-Page Website</li>
-                        <li data-en="E-Commerce Ready" data-es="Listo para E-Commerce">E-Commerce Ready</li>
-                        <li data-en="Advanced SEO" data-es="SEO Avanzado">Advanced SEO</li>
-                        <li data-en="Google Analytics" data-es="Google Analytics">Google Analytics</li>
-                        <li data-en="3 Months Support" data-es="3 Meses de Soporte">3 Months Support</li>
-                        <li data-en="Performance Optimization" data-es="Optimización de Rendimiento">Performance Optimization</li>
+                        <li data-en="Complete, growth-ready website" data-es="Sitio completo, listo para crecer">Complete, growth-ready website</li>
+                        <li data-en="Database integrations" data-es="Integraciones con base de datos">Database integrations</li>
+                        <li data-en="Automations" data-es="Automatizaciones">Automations</li>
+                        <li data-en="Technical SEO and analytics" data-es="SEO técnico y analítica">Technical SEO and analytics</li>
+                        <li data-en="Maintenance plan included" data-es="Plan de mantenimiento incluido">Maintenance plan included</li>
                     </ul>
-                    <button class="btn-primary" data-target-section="contact" data-en="Get Started" data-es="Empezar">Get Started</button>
+                    <button class="btn-primary" onclick="openModal()" data-en="Choose Professional" data-es="Elegir Profesional">Choose Professional</button>
                 </div>
 
                 <div class="pricing-card reveal" data-delay="300">
                     <div class="pricing-header">
-                        <h3 data-en="Enterprise" data-es="Empresarial">Enterprise</h3>
+                        <h3 data-en="Custom" data-es="A la Medida">Custom</h3>
                         <div class="price-row">
-                            <span class="price-amount custom" data-en="Custom" data-es="Personalizado">Custom</span>
+                            <span class="price-amount custom" data-en="Custom Quote" data-es="Cotización Personalizada">Custom Quote</span>
                         </div>
-                        <p data-en="Tailored solutions for established businesses" data-es="Soluciones a medida para negocios establecidos">Tailored solutions for established businesses</p>
+                        <p data-en="For e-commerce, user account platforms, and complex integrations." data-es="Para e-commerce, plataformas con cuentas de usuario e integraciones complejas.">For e-commerce, user account platforms, and complex integrations.</p>
                     </div>
                     <ul class="pricing-features">
-                        <li data-en="Unlimited Pages" data-es="Páginas Ilimitadas">Unlimited Pages</li>
-                        <li data-en="Custom Integrations" data-es="Integraciones Personalizadas">Custom Integrations</li>
-                        <li data-en="Full E-Commerce" data-es="E-Commerce Completo">Full E-Commerce</li>
-                        <li data-en="Dedicated Account Manager" data-es="Gerente de Cuenta Dedicado">Dedicated Account Manager</li>
-                        <li data-en="Priority 24/7 Support" data-es="Soporte Prioritario 24/7">Priority 24/7 Support</li>
-                        <li data-en="Monthly Reporting" data-es="Informes Mensuales">Monthly Reporting</li>
+                        <li data-en="Full e-commerce" data-es="E-commerce completo">Full e-commerce</li>
+                        <li data-en="User account platforms" data-es="Plataformas con cuentas de usuario">User account platforms</li>
+                        <li data-en="Complex integrations" data-es="Integraciones complejas">Complex integrations</li>
+                        <li data-en="Custom planning and quote" data-es="Planeación y cotización personalizada">Custom planning and quote</li>
                     </ul>
-                    <button class="btn-outline" data-target-section="contact" data-en="Contact Us" data-es="Contáctanos">Contact Us</button>
+                    <button class="btn-outline" onclick="openModal()" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</button>
+                </div>
+            </div>
+
+            <!-- Closing CTA -->
+            <div class="why-cta reveal">
+                <p class="why-cta-text" data-en="Ready for the next step? Tell us about your business and let's build the solution you need — together." data-es="¿Listo para dar el siguiente paso? Cuéntanos sobre tu negocio y construyamos juntos la solución que necesitas.">Ready for the next step? Tell us about your business and let's build the solution you need — together.</p>
+                <button class="btn-primary" onclick="openModal()" data-en="Start Your Project" data-es="Inicia Tu Proyecto">Start Your Project</button>
+            </div>
+
+        </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
+
+        <!-- ======================== CUSTOMERS ======================== -->
+        <section id="customers" class="customers-section">
+            <div class="section-header reveal">
+                <span class="section-tag" data-en="Our Customers" data-es="Nuestros Clientes">Our Customers</span>
+                <h2 data-en="Real Businesses, Real Websites" data-es="Negocios Reales, Sitios Reales">Real Businesses, Real Websites</h2>
+                <p data-en="Explore a few of the live websites we've designed and launched for our customers." data-es="Explora algunos de los sitios web en vivo que hemos diseñado y lanzado para nuestros clientes.">Explore a few of the live websites we've designed and launched for our customers.</p>
+            </div>
+
+            <div class="customers-showcase reveal">
+                <div class="customer-frame">
+                    <div class="frame-bar">
+                        <span class="frame-dot" aria-hidden="true"></span>
+                        <span class="frame-dot" aria-hidden="true"></span>
+                        <span class="frame-dot" aria-hidden="true"></span>
+                        <span class="frame-url" id="customerUrl">terrunows.com</span>
+                    </div>
+                    <div class="frame-body">
+                        <div class="customer-slide active" data-index="0">
+                            <img src="./assets/customer-terruno.jpg" alt="Terruno Wine &amp; Spirits website" width="960" height="600" loading="lazy">
+                        </div>
+                        <div class="customer-slide" data-index="1">
+                            <img src="./assets/customer-wealthos.jpg" alt="WealthOS website" width="960" height="600" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-info">
+                    <div class="customer-info-slide active" data-index="0">
+                        <h3>Terruno Wine &amp; Spirits</h3>
+                        <p data-en="A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast." data-es="Importadora con sede en Nueva York que lleva vinos, mezcales y destilados artesanales de productores boutique de México a restaurantes de alta cocina en el noreste de EE. UU.">A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast.</p>
+                        <a href="https://www.terrunows.com/" target="_blank" rel="noopener noreferrer" class="btn-outline" data-en="Visit Website" data-es="Visitar Sitio">Visit Website</a>
+                    </div>
+                    <div class="customer-info-slide" data-index="1">
+                        <h3>WealthOS</h3>
+                        <p data-en="A unified wealth dashboard for Mexican investors — track stocks, bonds, crypto, FIBRAs, and real estate in one place with real-time pricing." data-es="Un dashboard patrimonial unificado para inversionistas mexicanos — rastrea acciones, bonos, cripto, FIBRAs y bienes raíces en un solo lugar con precios en tiempo real.">A unified wealth dashboard for Mexican investors — track stocks, bonds, crypto, FIBRAs, and real estate in one place with real-time pricing.</p>
+                        <a href="https://webdevbyjavi-hue.github.io/WealthOS-Landing/" target="_blank" rel="noopener noreferrer" class="btn-outline" data-en="Visit Website" data-es="Visitar Sitio">Visit Website</a>
+                    </div>
+                </div>
+
+                <div class="customer-nav">
+                    <button class="customer-tab active" data-url="terrunows.com">Terruno Wine &amp; Spirits</button>
+                    <button class="customer-tab" data-url="wealthosystem.com">WealthOS</button>
                 </div>
             </div>
         </section>
+
+        <div class="section-divider" aria-hidden="true"></div>
 
         <!-- ======================== CONTACT ======================== -->
         <section id="contact" class="contact-section">
@@ -573,10 +394,6 @@
 
                     <div class="contact-details">
                         <div class="contact-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6.09 6.09l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                            <span>+1 (555) 123-4567</span>
-                        </div>
-                        <div class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             <span>hello@webika.dev</span>
                         </div>
@@ -586,10 +403,6 @@
                         <div class="contact-badge">
                             <span class="contact-badge-icon">⚡</span>
                             <span data-en="24h Response" data-es="Respuesta en 24h">24h Response</span>
-                        </div>
-                        <div class="contact-badge">
-                            <span class="contact-badge-icon">🔒</span>
-                            <span data-en="NDA Available" data-es="NDA Disponible">NDA Available</span>
                         </div>
                         <div class="contact-badge">
                             <span class="contact-badge-icon">✅</span>
@@ -618,10 +431,10 @@
                             <label data-en="What do you need?" data-es="¿Qué necesitas?">What do you need?</label>
                             <select name="service">
                                 <option value="" data-en="Select a service" data-es="Selecciona un servicio">Select a service</option>
-                                <option value="web" data-en="Web Design & Development" data-es="Diseño y Desarrollo Web">Web Design & Development</option>
-                                <option value="ecommerce" data-en="E-Commerce" data-es="E-Commerce">E-Commerce</option>
-                                <option value="seo" data-en="SEO & Performance" data-es="SEO y Rendimiento">SEO & Performance</option>
-                                <option value="maintenance" data-en="Maintenance & Support" data-es="Mantenimiento y Soporte">Maintenance & Support</option>
+                                <option value="essential" data-en="Essential Package" data-es="Paquete Esencial">Essential Package</option>
+                                <option value="professional" data-en="Professional Package" data-es="Paquete Profesional">Professional Package</option>
+                                <option value="custom" data-en="Custom Package" data-es="Paquete a la Medida">Custom Package</option>
+                                <option value="unsure" data-en="Not Sure" data-es="No estoy Seguro">Not Sure</option>
                                 <option value="other" data-en="Other" data-es="Otro">Other</option>
                             </select>
                         </div>
@@ -636,8 +449,6 @@
             </div>
         </section>
 
-        </template>
-
     </main>
 
     <!-- Footer -->
@@ -645,29 +456,36 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <a href="#home" class="brand">
-                    <img class="logo" src="./assets/logo.png" alt="Webika Logo">
+                    <img class="logo" src="./assets/logo.png" alt="Webika Logo" width="160" height="160">
                     <span class="brand-text">
                         <span class="company-name">Webika</span>
                         <span class="company-tag" data-en="Creative Digital Studio" data-es="Estudio Digital Creativo">Creative Digital Studio</span>
                     </span>
                 </a>
                 <p data-en="We build websites that help small and medium businesses thrive online." data-es="Construimos sitios web que ayudan a pequeñas y medianas empresas a crecer en línea.">We build websites that help small and medium businesses thrive online.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/webikastudiodigital/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/webika-studio/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                </div>
             </div>
 
             <div class="footer-links">
                 <div class="footer-col">
                     <h4 data-en="Services" data-es="Servicios">Services</h4>
                     <a href="#services" data-en="Web Design" data-es="Diseño Web">Web Design</a>
-                    <!-- <a href="#services" data-en="E-Commerce" data-es="E-Commerce">E-Commerce</a>
+                    <a href="#services" data-en="E-Commerce" data-es="E-Commerce">E-Commerce</a>
                     <a href="#services" data-en="SEO" data-es="SEO">SEO</a>
-                    <a href="#services" data-en="Maintenance" data-es="Mantenimiento">Maintenance</a> -->
+                    <a href="#services" data-en="Maintenance" data-es="Mantenimiento">Maintenance</a>
                 </div>
                 <div class="footer-col">
                     <h4 data-en="Company" data-es="Empresa">Company</h4>
-                    <a href="#work" data-en="Our Work" data-es="Nuestros Trabajos">Our Work</a>
-                    <!-- <a href="#process" data-en="Process" data-es="Proceso">Process</a>
-                    <a href="#pricing" data-en="Pricing" data-es="Precios">Pricing</a>
-                    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a> -->
+                    <a href="#pricing" data-en="Packages" data-es="Paquetes">Packages</a>
+                    <a href="#customers" data-en="Our Work" data-es="Nuestros Trabajos">Our Work</a>
+                    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
                 </div>
             </div>
         </div>
@@ -677,7 +495,7 @@
     </footer>
 
     <!-- ======================== PROJECT MODAL ======================== -->
-    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none">
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-card">
             <button class="modal-close" id="modalClose" aria-label="Close">&#x2715;</button>
             <h2 class="modal-title" id="modalTitle" data-en="Start Your Project" data-es="Inicia Tu Proyecto">Start Your Project</h2>
@@ -720,5 +538,11 @@
     <div class="cursor-ring" aria-hidden="true"></div>
 
     <script src="./script.js"></script>
+
+    <!-- Vercel Web Analytics -->
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
