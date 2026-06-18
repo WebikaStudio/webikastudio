@@ -30,20 +30,30 @@ function applyLanguage(lang) {
         if (text !== null) el.textContent = text;
     });
 
+    // Update HTML content for elements with rich markup (e.g. <strong>)
+    document.querySelectorAll('[data-en-html][data-es-html]').forEach(el => {
+        const html = el.getAttribute('data-' + lang + '-html');
+        if (html !== null) el.innerHTML = html;
+    });
+
     // Update input/textarea placeholders
     document.querySelectorAll('[data-placeholder-en][data-placeholder-es]').forEach(el => {
         el.placeholder = el.getAttribute('data-placeholder-' + lang);
     });
 
-    // Update lang toggle UI
-    const currentEl = document.getElementById('currentLang');
-    const otherEl   = document.getElementById('otherLang');
-    if (currentEl) currentEl.textContent = lang.toUpperCase();
-    if (otherEl)   otherEl.textContent   = lang === 'en' ? 'ES' : 'EN';
+    // Update lang toggle UI (both desktop and mobile)
+    document.querySelectorAll('#currentLang, #currentLangMobile').forEach(el => {
+        el.textContent = lang.toUpperCase();
+    });
+    document.querySelectorAll('#otherLang, #otherLangMobile').forEach(el => {
+        el.textContent = lang === 'en' ? 'ES' : 'EN';
+    });
 }
 
-document.getElementById('langToggle').addEventListener('click', () => {
-    applyLanguage(currentLang === 'en' ? 'es' : 'en');
+document.querySelectorAll('#langToggle, #langToggleMobile').forEach(btn => {
+    btn.addEventListener('click', () => {
+        applyLanguage(currentLang === 'en' ? 'es' : 'en');
+    });
 });
 
 // ---- Scroll Reveal (Intersection Observer) ----
@@ -63,7 +73,6 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 const navbar        = document.getElementById('navbar');
 const navLinks      = document.querySelectorAll('.nav-link');
-const scrollProgress = document.getElementById('scrollProgress');
 let   lastScrollY   = 0;
 let   scrollTicking  = false;
 
@@ -76,11 +85,6 @@ function updateNav() {
     // Keep navbar visible at all times while scrolling
     navbar.classList.remove('hidden');
     lastScrollY = y;
-
-    // Scroll progress bar
-    const docH   = document.documentElement.scrollHeight - window.innerHeight;
-    const pct    = docH > 0 ? (y / docH) * 100 : 0;
-    scrollProgress.style.width = pct.toFixed(1) + '%';
 
     // Active link highlighting
     const sections = ['home', 'why-website', 'services', 'pricing', 'customers', 'testimonials', 'contact'];
@@ -120,35 +124,34 @@ function animateCounter(el) {
     requestAnimationFrame(tick);
 }
 
+
 // ---- Mobile Menu ----
 
 const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
+const navCenter  = document.querySelector('.nav-center');
 
-if (menuToggle && mobileMenu) {
-    function closeMobileMenu() {
-        menuToggle.classList.remove('active');
-        mobileMenu.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-    }
-
+if (menuToggle && navCenter) {
     menuToggle.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('open');
+        const isOpen = navCenter.classList.toggle('open');
         menuToggle.classList.toggle('active', isOpen);
         menuToggle.setAttribute('aria-expanded', String(isOpen));
-        mobileMenu.setAttribute('aria-hidden', String(!isOpen));
     });
 
-    mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
-        link.addEventListener('click', closeMobileMenu);
+    navCenter.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navCenter.classList.remove('open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        });
     });
 
     document.addEventListener('click', e => {
-        if (mobileMenu.classList.contains('open') &&
-            !mobileMenu.contains(e.target) &&
+        if (navCenter.classList.contains('open') &&
+            !navCenter.contains(e.target) &&
             !menuToggle.contains(e.target)) {
-            closeMobileMenu();
+            navCenter.classList.remove('open');
+            menuToggle.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
         }
     });
 }
@@ -504,36 +507,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 }());
 
-// ---- Customers Showcase (auto-cycling carousel) ----
-(function () {
-    const tabs   = document.querySelectorAll('.customer-tab');
-    const slides = document.querySelectorAll('.customer-slide');
-    const infos  = document.querySelectorAll('.customer-info-slide');
-    const urlEl  = document.getElementById('customerUrl');
-    if (!tabs.length) return;
-
-    let current = 0;
-    let timer   = null;
-
-    function showCustomer(index) {
-        current = index;
-        tabs.forEach((tab, i)   => tab.classList.toggle('active', i === index));
-        slides.forEach((s, i)   => s.classList.toggle('active', i === index));
-        infos.forEach((info, i) => info.classList.toggle('active', i === index));
-        if (urlEl) urlEl.textContent = tabs[index].dataset.url || '';
-    }
-
-    function startCycle() {
-        clearInterval(timer);
-        timer = setInterval(() => showCustomer((current + 1) % tabs.length), 6000);
-    }
-
-    tabs.forEach((tab, i) => {
-        tab.addEventListener('click', () => {
-            showCustomer(i);
-            startCycle();
-        });
-    });
-
-    startCycle();
-}());

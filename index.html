@@ -47,7 +47,6 @@
 
     <!-- Navigation -->
     <nav id="navbar">
-        <div class="nav-progress" id="scrollProgress"></div>
         <a href="#home" class="brand">
             <img class="logo" src="./assets/logo.png" alt="Webika Logo" width="160" height="160">
             <span class="brand-text">
@@ -62,6 +61,11 @@
             <a href="#pricing" class="nav-link" data-en="Packages" data-es="Paquetes">Packages</a>
             <a href="#customers" class="nav-link" data-en="Work" data-es="Trabajos">Work</a>
             <a href="#contact" class="nav-link" data-en="Contact" data-es="Contacto">Contact</a>
+            <button class="lang-toggle lang-toggle-mobile" id="langToggleMobile" aria-label="Toggle language">
+                <span class="lang-active" id="currentLangMobile">EN</span>
+                <span class="lang-sep">/</span>
+                <span id="otherLangMobile">ES</span>
+            </button>
         </div>
 
         <div class="nav-right">
@@ -79,15 +83,7 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-        <a href="#why-website" class="mobile-link" data-en="Why Us" data-es="Por Qué">Why Us</a>
-        <a href="#services" class="mobile-link" data-en="Services" data-es="Servicios">Services</a>
-        <a href="#pricing" class="mobile-link" data-en="Packages" data-es="Paquetes">Packages</a>
-        <a href="#customers" class="mobile-link" data-en="Work" data-es="Trabajos">Work</a>
-        <a href="#contact" class="mobile-link" data-en="Contact" data-es="Contacto">Contact</a>
-        <button class="mobile-link mobile-cta" onclick="openModal()" data-en="Let's Talk" data-es="Hablemos">Let's Talk</button>
-    </div>
+
 
     <main>
 
@@ -150,15 +146,15 @@
             <!-- Editorial 2-col -->
             <div class="why-editorial">
                 <div class="why-editorial-text reveal" data-delay="0">
-                    <blockquote class="why-quote">"La gran mayoría de tus competidores todavía no está en línea."</blockquote>
-                    <p>Las PyMEs representan el <strong>52% de los ingresos del país</strong> y emplean a 27 millones de personas — el 68.4% de la fuerza laboral nacional. Son la economía. Pero digitalmente, la mayoría va muy por detrás.</p>
-                    <p>Solo el <strong>5.5% de todos los negocios en México</strong> — alrededor de 302,000 — venden a través de internet. La gran mayoría de tus competidores todavía no está en línea.</p>
-                    <p>El <strong>62.3% de las MiPymes</strong> ya reconoce que la digitalización es importante — y entre las medianas empresas, esa cifra sube al 83.8%. La mentalidad está cambiando. Los negocios que actúen ahora liderarán su categoría.</p>
+                    <blockquote class="why-quote" data-en="&quot;The vast majority of your competitors still aren't online.&quot;" data-es="&quot;La gran mayoría de tus competidores todavía no está en línea.&quot;">"La gran mayoría de tus competidores todavía no está en línea."</blockquote>
+                    <p data-en-html="SMEs account for <strong>52% of the country's revenue</strong> and employ 27 million people — 68.4% of the national workforce. They are the economy. But digitally, most are far behind." data-es-html="Las PyMEs representan el <strong>52% de los ingresos del país</strong> y emplean a 27 millones de personas — el 68.4% de la fuerza laboral nacional. Son la economía. Pero digitalmente, la mayoría va muy por detrás.">Las PyMEs representan el <strong>52% de los ingresos del país</strong> y emplean a 27 millones de personas — el 68.4% de la fuerza laboral nacional. Son la economía. Pero digitalmente, la mayoría va muy por detrás.</p>
+                    <p data-en-html="Only <strong>5.5% of all businesses in Mexico</strong> — around 302,000 — sell through the internet. The vast majority of your competitors still aren't online." data-es-html="Solo el <strong>5.5% de todos los negocios en México</strong> — alrededor de 302,000 — venden a través de internet. La gran mayoría de tus competidores todavía no está en línea.">Solo el <strong>5.5% de todos los negocios en México</strong> — alrededor de 302,000 — venden a través de internet. La gran mayoría de tus competidores todavía no está en línea.</p>
+                    <p data-en-html="<strong>62.3% of MSMEs</strong> already recognize that digitalization is important — and among medium-sized businesses, that figure rises to 83.8%. The mindset is shifting. Businesses that act now will lead their category." data-es-html="El <strong>62.3% de las MiPymes</strong> ya reconoce que la digitalización es importante — y entre las medianas empresas, esa cifra sube al 83.8%. La mentalidad está cambiando. Los negocios que actúen ahora liderarán su categoría.">El <strong>62.3% de las MiPymes</strong> ya reconoce que la digitalización es importante — y entre las medianas empresas, esa cifra sube al 83.8%. La mentalidad está cambiando. Los negocios que actúen ahora liderarán su categoría.</p>
                 </div>
                 <div class="why-visual-card reveal" data-delay="150">
                     <div class="why-chart-header">
                         <span class="why-chart-title" data-en="Businesses in Mexico" data-es="Negocios en México">Negocios en México</span>
-                        <span class="why-chart-source">Fuente: INEGI</span>
+                        <span class="why-chart-source" data-en="Source: INEGI" data-es="Fuente: INEGI">Fuente: INEGI</span>
                     </div>
                     <div class="why-bar-chart" aria-label="Gráfica: presencia digital de negocios en México">
                         <div class="why-bar-row">
@@ -340,45 +336,62 @@
         <section id="customers" class="customers-section">
             <div class="section-header reveal">
                 <span class="section-tag" data-en="Our Customers" data-es="Nuestros Clientes">Our Customers</span>
-                <h2 data-en="Real Businesses, Real Websites" data-es="Negocios Reales, Sitios Reales">Real Businesses, Real Websites</h2>
+                <h2 data-en="What We've Built" data-es="Lo que Hemos Construido">What We've Built</h2>
                 <p data-en="Explore a few of the live websites we've designed and launched for our customers." data-es="Explora algunos de los sitios web en vivo que hemos diseñado y lanzado para nuestros clientes.">Explore a few of the live websites we've designed and launched for our customers.</p>
             </div>
 
-            <div class="customers-showcase reveal">
-                <div class="customer-frame">
-                    <div class="frame-bar">
-                        <span class="frame-dot" aria-hidden="true"></span>
-                        <span class="frame-dot" aria-hidden="true"></span>
-                        <span class="frame-dot" aria-hidden="true"></span>
-                        <span class="frame-url" id="customerUrl">terrunows.com</span>
-                    </div>
-                    <div class="frame-body">
-                        <div class="customer-slide active" data-index="0">
+            <div class="case-studies">
+                <a href="https://www.terrunows.com/" target="_blank" rel="noopener noreferrer" class="case-study-card reveal">
+                    <div class="case-study-visual">
+                        <div class="case-study-browser">
+                            <div class="browser-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <span class="browser-url">terrunows.com</span>
+                        </div>
+                        <div class="case-study-img-wrap">
                             <img src="./assets/customer-terruno.jpg" alt="Terruno Wine &amp; Spirits website" width="960" height="600" loading="lazy">
                         </div>
-                        <div class="customer-slide" data-index="1">
+                    </div>
+                    <div class="case-study-details">
+                        <h3>Terruno Wine &amp; Spirits</h3>
+                        <p data-en="A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast." data-es="Importadora con sede en Nueva York que lleva vinos, mezcales y destilados artesanales de productores boutique de México a restaurantes de alta cocina en el noreste de EE. UU.">A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast.</p>
+                        <div class="case-study-badges">
+                            <span class="case-study-badge" data-en="Custom Design" data-es="Diseño a Medida">Custom Design</span>
+                            <span class="case-study-badge">Responsive</span>
+                            <span class="case-study-badge">SEO</span>
+                        </div>
+                        <span class="case-study-link" data-en="Visit Website" data-es="Visitar Sitio">Visit Website <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="https://webdevbyjavi-hue.github.io/WealthOS-Landing/" target="_blank" rel="noopener noreferrer" class="case-study-card case-study-card--alt reveal" data-delay="200">
+                    <div class="case-study-visual">
+                        <div class="case-study-browser">
+                            <div class="browser-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                            <span class="browser-url">wealthosystem.com</span>
+                        </div>
+                        <div class="case-study-img-wrap">
                             <img src="./assets/customer-wealthos.jpg" alt="WealthOS website" width="960" height="600" loading="lazy">
                         </div>
                     </div>
-                </div>
-
-                <div class="customer-info">
-                    <div class="customer-info-slide active" data-index="0">
-                        <h3>Terruno Wine &amp; Spirits</h3>
-                        <p data-en="A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast." data-es="Importadora con sede en Nueva York que lleva vinos, mezcales y destilados artesanales de productores boutique de México a restaurantes de alta cocina en el noreste de EE. UU.">A New York-based importer bringing artisanal wines, mezcals, and spirits from Mexico's boutique producers to fine dining tables across the Northeast.</p>
-                        <a href="https://www.terrunows.com/" target="_blank" rel="noopener noreferrer" class="btn-outline" data-en="Visit Website" data-es="Visitar Sitio">Visit Website</a>
-                    </div>
-                    <div class="customer-info-slide" data-index="1">
+                    <div class="case-study-details">
                         <h3>WealthOS</h3>
                         <p data-en="A unified wealth dashboard for Mexican investors — track stocks, bonds, crypto, FIBRAs, and real estate in one place with real-time pricing." data-es="Un dashboard patrimonial unificado para inversionistas mexicanos — rastrea acciones, bonos, cripto, FIBRAs y bienes raíces en un solo lugar con precios en tiempo real.">A unified wealth dashboard for Mexican investors — track stocks, bonds, crypto, FIBRAs, and real estate in one place with real-time pricing.</p>
-                        <a href="https://webdevbyjavi-hue.github.io/WealthOS-Landing/" target="_blank" rel="noopener noreferrer" class="btn-outline" data-en="Visit Website" data-es="Visitar Sitio">Visit Website</a>
+                        <div class="case-study-badges">
+                            <span class="case-study-badge">Dashboard</span>
+                            <span class="case-study-badge" data-en="Data Viz" data-es="Visualización de Datos">Data Viz</span>
+                            <span class="case-study-badge" data-en="Real-Time" data-es="Tiempo Real">Real-Time</span>
+                        </div>
+                        <span class="case-study-link" data-en="Visit Website" data-es="Visitar Sitio">Visit Website <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
                     </div>
-                </div>
-
-                <div class="customer-nav">
-                    <button class="customer-tab active" data-url="terrunows.com">Terruno Wine &amp; Spirits</button>
-                    <button class="customer-tab" data-url="wealthosystem.com">WealthOS</button>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -544,5 +557,11 @@
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
