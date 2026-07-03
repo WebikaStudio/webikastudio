@@ -223,15 +223,20 @@ if (contactForm) contactForm.addEventListener('submit', async e => {
     submitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
     submitBtn.disabled = true;
 
+    const privacyConsent = contactForm.querySelector('[name="privacyConsent"]').checked;
+
     const data = {
         name:    _sanitizeField(contactForm.querySelector('[name="name"]').value,    FIELD_LIMITS.name),
         email:   _sanitizeField(contactForm.querySelector('[name="email"]').value,   FIELD_LIMITS.email),
         company: _sanitizeField(contactForm.querySelector('[name="company"]').value, FIELD_LIMITS.company),
         service: _sanitizeField(contactForm.querySelector('[name="service"]').value, FIELD_LIMITS.service),
         message: _sanitizeField(contactForm.querySelector('[name="message"]').value, FIELD_LIMITS.message),
+        privacyConsent,
     };
 
-    const validationError = _validateFormData(data);
+    const validationError = !privacyConsent
+        ? (currentLang === 'en' ? 'Please accept the Privacy Notice.' : 'Debes aceptar el Aviso de Privacidad.')
+        : _validateFormData(data);
     if (validationError) {
         submitBtn.textContent = validationError;
         submitBtn.disabled = false;
@@ -340,14 +345,19 @@ modalForm.addEventListener('submit', async e => {
     modalSubmitBtn.textContent = currentLang === 'en' ? 'Sending…' : 'Enviando…';
     modalSubmitBtn.disabled = true;
 
+    const privacyConsent = modalForm.querySelector('[name="privacyConsent"]').checked;
+
     const formData = {
         name:    _sanitizeField(modalForm.querySelector('[name="name"]').value,    FIELD_LIMITS.name),
         email:   _sanitizeField(modalForm.querySelector('[name="email"]').value,   FIELD_LIMITS.email),
         phone:   _sanitizeField(modalForm.querySelector('[name="phone"]').value,   FIELD_LIMITS.phone),
         details: _sanitizeField(modalForm.querySelector('[name="details"]').value, FIELD_LIMITS.details),
+        privacyConsent,
     };
 
-    const validationError = _validateFormData(formData);
+    const validationError = !privacyConsent
+        ? (currentLang === 'en' ? 'Please accept the Privacy Notice.' : 'Debes aceptar el Aviso de Privacidad.')
+        : _validateFormData(formData);
     if (validationError) {
         modalSubmitBtn.textContent = validationError;
         modalSubmitBtn.disabled = false;

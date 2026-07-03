@@ -35,7 +35,7 @@
 
   gtag('config', 'G-8GRMWX4HSC');
 </script>
-<body>
+<body class="custom-cursor">
 
     <!-- Background Orbs (fixed, behind everything) -->
     <div class="bg-orbs" aria-hidden="true">
@@ -408,7 +408,7 @@
                     <div class="contact-details">
                         <div class="contact-item">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                            <span>hello@webika.dev</span>
+                            <span>jsepulveda@webikastudio.com</span>
                         </div>
                     </div>
 
@@ -455,8 +455,15 @@
                             <label data-en="Tell us about your project" data-es="Cuéntanos sobre tu proyecto">Tell us about your project</label>
                             <textarea rows="4" name="message" data-placeholder-en="Describe your project, goals, and timeline..." data-placeholder-es="Describe tu proyecto, objetivos y plazos..." placeholder="Describe your project, goals, and timeline..."></textarea>
                         </div>
+                        <div class="form-group form-consent">
+                            <label class="consent-label">
+                                <input type="checkbox" name="privacyConsent" required>
+                                <span data-en="I have read and accept the Privacy Notice for the use of my personal data." data-es="He leído y acepto el Aviso de Privacidad para el tratamiento de mis datos personales.">He leído y acepto el Aviso de Privacidad para el tratamiento de mis datos personales.</span>
+                            </label>
+                        </div>
                         <input type="text" name="_hp" style="display:none" tabindex="-1" autocomplete="off">
                         <button type="submit" class="btn-primary btn-full" id="submitBtn" data-en="Send Message" data-es="Enviar Mensaje">Send Message</button>
+                        <p class="form-privacy-note" data-en-html='Your data is protected under our <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.' data-es-html='Tus datos están protegidos conforme a nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.'>Tus datos están protegidos conforme a nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.</p>
                     </form>
                 </div>
             </div>
@@ -504,6 +511,9 @@
         </div>
         <div class="footer-bottom">
             <p id="footerYear" data-en="© 2026 Webika. All rights reserved." data-es="© 2026 Webika. Todos los derechos reservados.">© 2026 Webika. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="aviso-privacidad.html" data-en="Privacy Notice" data-es="Aviso de Privacidad">Aviso de Privacidad</a>
+            </div>
         </div>
     </footer>
 
@@ -535,8 +545,15 @@
                     <label data-en="Project Details" data-es="Detalles del Proyecto">Project Details</label>
                     <textarea rows="4" name="details" data-placeholder-en="Describe your project, goals, and timeline…" data-placeholder-es="Describe tu proyecto, objetivos y plazos…" placeholder="Describe your project, goals, and timeline…" required></textarea>
                 </div>
+                <div class="form-group form-consent">
+                    <label class="consent-label">
+                        <input type="checkbox" name="privacyConsent" required>
+                        <span data-en="I have read and accept the Privacy Notice for the use of my personal data." data-es="He leído y acepto el Aviso de Privacidad para el tratamiento de mis datos personales.">He leído y acepto el Aviso de Privacidad para el tratamiento de mis datos personales.</span>
+                    </label>
+                </div>
                 <input type="text" name="_hp" style="display:none" tabindex="-1" autocomplete="off">
                 <button type="submit" class="btn-primary btn-full" id="modalSubmitBtn" data-en="Send Request" data-es="Enviar Solicitud">Send Request</button>
+                <p class="form-privacy-note" data-en-html='Your data is protected under our <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Privacy Notice</a>.' data-es-html='Tus datos están protegidos conforme a nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.'>Tus datos están protegidos conforme a nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a>.</p>
             </form>
             <div class="modal-thanks" id="modalThanks" style="display:none">
                 <div class="modal-thanks-icon">✓</div>
