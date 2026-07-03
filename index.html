@@ -26,15 +26,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8GRMWX4HSC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8GRMWX4HSC');
-</script>
 <body class="custom-cursor">
 
     <!-- Background Orbs (fixed, behind everything) -->
@@ -436,9 +427,18 @@
                                 <input type="email" name="email" data-placeholder-en="john@company.com" data-placeholder-es="juan@empresa.com" placeholder="john@company.com" required>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label data-en="Company / Business Name" data-es="Empresa / Nombre del Negocio">Company / Business Name</label>
-                            <input type="text" name="company" data-placeholder-en="My Business LLC" data-placeholder-es="Mi Empresa S.A." placeholder="My Business LLC">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label data-en="Company / Business Name" data-es="Empresa / Nombre del Negocio">Company / Business Name</label>
+                                <input type="text" name="company" data-placeholder-en="My Business LLC" data-placeholder-es="Mi Empresa S.A." placeholder="My Business LLC">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <span data-en="Phone Number" data-es="Número de Teléfono">Phone Number</span>
+                                    <span class="field-optional" data-en="(optional)" data-es="(opcional)">(optional)</span>
+                                </label>
+                                <input type="tel" name="phone" data-placeholder-en="+1 (555) 000-0000" data-placeholder-es="+52 (55) 0000-0000" placeholder="+1 (555) 000-0000">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label data-en="What do you need?" data-es="¿Qué necesitas?">What do you need?</label>
@@ -513,9 +513,21 @@
             <p id="footerYear" data-en="© 2026 Webika. All rights reserved." data-es="© 2026 Webika. Todos los derechos reservados.">© 2026 Webika. All rights reserved.</p>
             <div class="footer-bottom-links">
                 <a href="aviso-privacidad.html" data-en="Privacy Notice" data-es="Aviso de Privacidad">Aviso de Privacidad</a>
+                <button type="button" class="footer-link-btn" id="cookiePreferencesLink" data-en="Cookie Preferences" data-es="Preferencias de Cookies">Preferencias de Cookies</button>
             </div>
         </div>
     </footer>
+
+    <!-- ======================== COOKIE BANNER ======================== -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-banner-inner">
+            <p class="cookie-banner-text" data-en-html='We use cookies from Google Analytics to understand how visitors use our site. See our <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Privacy Notice</a> for details.' data-es-html='Utilizamos cookies de Google Analytics para entender cómo los visitantes usan nuestro sitio. Consulta nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a> para más información.'>Utilizamos cookies de Google Analytics para entender cómo los visitantes usan nuestro sitio. Consulta nuestro <a href="aviso-privacidad.html" target="_blank" rel="noopener noreferrer">Aviso de Privacidad</a> para más información.</p>
+            <div class="cookie-banner-actions">
+                <button type="button" class="btn-ghost" id="cookieReject" data-en="Reject" data-es="Rechazar">Rechazar</button>
+                <button type="button" class="btn-primary" id="cookieAccept" data-en="Accept" data-es="Aceptar">Aceptar</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ======================== PROJECT MODAL ======================== -->
     <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

@@ -7,7 +7,53 @@ const pageLoadTime = Date.now();
 const visitCount   = parseInt(localStorage.getItem('visitCount') || '0') + 1;
 localStorage.setItem('visitCount', visitCount);
 
+// ---- Cookie Consent (Google Analytics) ----
 
+const GA_MEASUREMENT_ID  = 'G-8GRMWX4HSC';
+const COOKIE_CONSENT_KEY = 'webika-cookie-consent';
+
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', GA_MEASUREMENT_ID);
+
+let analyticsLoaded = false;
+function loadAnalytics() {
+    if (analyticsLoaded || document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+    analyticsLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    document.head.appendChild(s);
+}
+
+const cookieBanner        = document.getElementById('cookieBanner');
+const cookieAcceptBtn     = document.getElementById('cookieAccept');
+const cookieRejectBtn     = document.getElementById('cookieReject');
+const cookiePreferencesLink = document.getElementById('cookiePreferencesLink');
+
+function showCookieBanner() { if (cookieBanner) cookieBanner.classList.add('is-open'); }
+function hideCookieBanner() { if (cookieBanner) cookieBanner.classList.remove('is-open'); }
+
+const cookieConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
+if (cookieConsent === 'granted') {
+    loadAnalytics();
+} else if (cookieConsent !== 'denied') {
+    showCookieBanner();
+}
+
+if (cookieAcceptBtn) cookieAcceptBtn.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'granted');
+    loadAnalytics();
+    hideCookieBanner();
+});
+
+if (cookieRejectBtn) cookieRejectBtn.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'denied');
+    hideCookieBanner();
+});
+
+if (cookiePreferencesLink) cookiePreferencesLink.addEventListener('click', showCookieBanner);
 
    // ---- Language System ----
 
@@ -229,6 +275,7 @@ if (contactForm) contactForm.addEventListener('submit', async e => {
         name:    _sanitizeField(contactForm.querySelector('[name="name"]').value,    FIELD_LIMITS.name),
         email:   _sanitizeField(contactForm.querySelector('[name="email"]').value,   FIELD_LIMITS.email),
         company: _sanitizeField(contactForm.querySelector('[name="company"]').value, FIELD_LIMITS.company),
+        phone:   _sanitizeField(contactForm.querySelector('[name="phone"]').value,   FIELD_LIMITS.phone),
         service: _sanitizeField(contactForm.querySelector('[name="service"]').value, FIELD_LIMITS.service),
         message: _sanitizeField(contactForm.querySelector('[name="message"]').value, FIELD_LIMITS.message),
         privacyConsent,
